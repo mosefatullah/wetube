@@ -5,17 +5,19 @@ import Library from "./pages/Library";
 import History from "./pages/History";
 import Subscriptions from "./pages/Subscriptions";
 import WatchLater from "./pages/WatchLater";
+import Watch from "./pages/Watch";
 
 function App() {
  return (
   <div className="App">
-   <BrowserRouter>
+   <BrowserRouter basename="/project5">
     <Routes>
      <Route path="/" element={<Home />}></Route>
      <Route path="/library" element={<Library />}></Route>
      <Route path="/history" element={<History />}></Route>
      <Route path="/subscriptions" element={<Subscriptions />}></Route>
      <Route path="/watchLater" element={<WatchLater />}></Route>
+     <Route path="/watch" element={<Watch />}></Route>
     </Routes>
    </BrowserRouter>
   </div>
