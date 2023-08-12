@@ -1,0 +1,107 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;800&display=swap");
+
+$primary-color: #0f0f0f;
+$primary-text-color: #fff;
+$primary-other-color: #0096ff;
+
+* {
+ margin: 0;
+ padding: 0;
+ box-sizing: border-box;
+}
+
+body {
+ margin: 0;
+ font-family: "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI", "Oxygen",
+  "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+ -webkit-font-smoothing: antialiased;
+ -moz-osx-font-smoothing: grayscale;
+ background-color: $primary-color;
+ color: $primary-text-color;
+}
+
+.__navbar {
+ background-color: $primary-color;
+ .navbar {
+  padding: 0.3rem 1rem;
+  .navbar-brand h2 {
+   margin: 0;
+   color: $primary-text-color;
+   font-weight: 800;
+   font-size: 1.5rem;
+   letter-spacing: -1px;
+  }
+  .input-group {
+   max-width: 600px;
+   input {
+    background-color: $primary-color;
+    padding-left: 1rem;
+    font-size: 0.9rem;
+    color: $primary-text-color;
+    border-color: rgba($primary-text-color, 0.2);
+    &::placeholder {
+     color: rgba($primary-text-color, 0.6);
+    }
+    &:focus {
+     box-shadow: none !important;
+     border-color: $primary-other-color;
+    }
+   }
+   button {
+    background-color: rgba($primary-text-color, 0.1);
+    border-left: 0 !important;
+    border-color: rgba($primary-text-color, 0.2) !important;
+    svg {
+     fill: $primary-text-color;
+    }
+   }
+   button:last-child {
+    padding: 0.5rem 0.8rem;
+   }
+  }
+  .menu button {
+   padding: 0.4rem 0.5rem;
+  }
+ }
+ .btn-round {
+  background-color: transparent;
+  padding: 0.3rem 0.55rem;
+  border: 0;
+  outline: 0;
+  border-radius: 10rem !important;
+  svg {
+   fill: $primary-text-color;
+  }
+  &:hover {
+   background-color: rgba($primary-text-color, 0.1);
+  }
+  &:active {
+   background-color: rgba($primary-text-color, 0.15);
+  }
+ }
+}
+
+.__sidemenu {
+ padding: 0 1rem;
+ button {
+  width: 100%;
+  padding: 0.5rem 0.8rem;
+  max-width: 220px;
+  text-align: left;
+  background-color: transparent;
+  color: $primary-text-color;
+  border-radius: 0.8rem;
+  border: 0;
+  font-size: 0.9rem;
+  svg{
+    fill: $primary-text-color;
+    margin-right: 1rem;
+  }
+  &:hover {
+   background-color: rgba($primary-text-color, 0.1);
+  }
+  &:active,&.active {
+   background-color: rgba($primary-text-color, 0.15);
+  }
+ }
+}

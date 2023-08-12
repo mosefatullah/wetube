@@ -1,8 +1,101 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;800&display=swap");
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
-p{
-  color: brown;
+body {
+  margin: 0;
+  font-family: "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #0f0f0f;
+  color: #fff;
+}
+
+.__navbar {
+  background-color: #0f0f0f;
+}
+.__navbar .navbar {
+  padding: 0.3rem 1rem;
+}
+.__navbar .navbar .navbar-brand h2 {
+  margin: 0;
+  color: #fff;
+  font-weight: 800;
+  font-size: 1.5rem;
+  letter-spacing: -1px;
+}
+.__navbar .navbar .input-group {
+  max-width: 600px;
+}
+.__navbar .navbar .input-group input {
+  background-color: #0f0f0f;
+  padding-left: 1rem;
+  font-size: 0.9rem;
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.2);
+}
+.__navbar .navbar .input-group input::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+.__navbar .navbar .input-group input:focus {
+  box-shadow: none !important;
+  border-color: #0096ff;
+}
+.__navbar .navbar .input-group button {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-left: 0 !important;
+  border-color: rgba(255, 255, 255, 0.2) !important;
+}
+.__navbar .navbar .input-group button svg {
+  fill: #fff;
+}
+.__navbar .navbar .input-group button:last-child {
+  padding: 0.5rem 0.8rem;
+}
+.__navbar .navbar .menu button {
+  padding: 0.4rem 0.5rem;
+}
+.__navbar .btn-round {
+  background-color: transparent;
+  padding: 0.3rem 0.55rem;
+  border: 0;
+  outline: 0;
+  border-radius: 10rem !important;
+}
+.__navbar .btn-round svg {
+  fill: #fff;
+}
+.__navbar .btn-round:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+.__navbar .btn-round:active {
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+.__sidemenu {
+  padding: 0 1rem;
+}
+.__sidemenu button {
+  width: 100%;
+  padding: 0.5rem 0.8rem;
+  max-width: 220px;
+  text-align: left;
+  background-color: transparent;
+  color: #fff;
+  border-radius: 0.8rem;
+  border: 0;
+  font-size: 0.9rem;
+}
+.__sidemenu button svg {
+  fill: #fff;
+  margin-right: 1rem;
+}
+.__sidemenu button:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+.__sidemenu button:active, .__sidemenu button.active {
+  background-color: rgba(255, 255, 255, 0.15);
 }
