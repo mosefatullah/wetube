@@ -24,13 +24,6 @@ function Home() {
      <Sidebar />
     </div>
     <div className="col-md-10">
-     <div>Home</div>
-     <p className="text-danger">
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati soluta
-      aspernatur ipsa ex tempore laborum vero deserunt voluptates, placeat
-      pariatur excepturi animi eos consectetur asperiores. Unde optio nam iusto
-      repellat?
-     </p>
      <div className="__video-container">
       <div className="row row-gap-4">
        {videos.map((x, i) => {
