@@ -1,9 +1,13 @@
-import React from 'react'
+import React from "react";
+import Navbar from './components/Navbar';
 
 function Watch() {
-  return (
-    <div>Watch</div>
-  )
+ return (
+  <>
+   <Navbar />
+   <div>Watch</div>
+  </>
+ );
 }
 
-export default Watch
+export default Watch;
