@@ -1,7 +1,7 @@
 {
- "homepage": "https://mosefatullah.github.io/project5",
  "name": "Wetube",
  "version": "0.1.0",
+ "homepage": "https://mosefatullah.github.io/project5",
  "private": true,
  "dependencies": {
   "@testing-library/jest-dom": "^5.17.0",
