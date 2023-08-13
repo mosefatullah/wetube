@@ -6,7 +6,7 @@ function Subscriptions() {
  return (
   <>
    <Navbar />
-   <div className="row">
+   <div className="__commonCss row">
     <div className="col-md-2">
      <Sidebar />
     </div>

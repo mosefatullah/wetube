@@ -49,7 +49,7 @@ body {
 
 .__navbar {
  width: 100%;
- height: 70px;
+ min-height: 70px;
  position: sticky;
  top: 0;
  left: 0;
@@ -64,9 +64,10 @@ body {
    h2 {
     margin: 0;
     margin-left: 0.3rem;
+    padding-top: 0.2rem;
     color: $primary-text-color;
     font-weight: 800;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     letter-spacing: -1px;
    }
   }
@@ -156,8 +157,10 @@ body {
   border-radius: 0.8rem;
   border: 0;
   font-size: 0.9rem;
+  //margin: 0.1rem 0;
   svg {
    fill: $primary-text-color;
+   margin-top: -0.2rem;
    margin-right: 1rem;
   }
   &:hover {
@@ -167,22 +170,33 @@ body {
    background-color: rgba($primary-text-color, 0.15);
   }
  }
- a.active {
+ .mobileBtn {
+  display: none;
+ }
+}
+a.active {
+ button {
+  background-color: rgba($primary-other-color, 0.2);
+  font-weight: 800;
+  color: $primary-other-color;
+ }
+ svg {
+  fill: $primary-other-color;
+ }
+ &:hover {
   button {
    background-color: rgba($primary-other-color, 0.2);
-   font-weight: 800;
-   color: $primary-other-color;
-  }
-  svg {
-   fill: $primary-other-color;
   }
  }
 }
 
-.__home {
+
+.__commonCss {
  & > .row > div:last-child {
   padding: 0;
  }
+}
+.__home {
  .__video-container {
   .__video {
    a {
@@ -245,8 +259,8 @@ body {
 .__watch {
  padding: 1rem 5rem;
  padding-bottom: 10rem;
- .row > div:first-child{
-    padding: 0 2rem;
+ .row > div:first-child {
+  padding: 0 2rem;
  }
  .videobox {
   img {
@@ -265,6 +279,7 @@ body {
    & > div {
     display: flex;
     align-items: center;
+    padding: 0;
     .profilePicture {
      width: 40px;
      height: 40px;
@@ -289,6 +304,91 @@ body {
      span {
       font-size: 0.7rem;
       color: rgba($primary-text-color, 0.5);
+     }
+    }
+   }
+  }
+ }
+}
+
+@media screen and (max-width: 991px) {
+ .__sidemenu {
+  button {
+   width: 48px;
+   height: 48px;
+   overflow: hidden;
+   color: transparent;
+   margin-top: 0.3rem;
+   margin-bottom: 0.3rem;
+  }
+  a.active button {
+   color: transparent;
+  }
+  .mobileBtn {
+   display: block;
+  }
+ }
+}
+
+@media screen and (max-width: 768px) {
+ .__navbar {
+  .navbar {
+   .navbar-brand {
+    h2 {
+     font-size: 1rem;
+     margin-top: 0.1rem;
+    }
+   }
+   .input-group {
+    max-width: 400px;
+    input {
+     font-size: 0.8rem;
+    }
+   }
+  }
+ }
+ .__sidemenu {
+  padding: 1rem 1rem 4rem 0;
+  button {
+   width: 100%;
+   overflow: auto;
+   color: $primary-text-color;
+  }
+  a.active button {
+   color: $primary-other-color;
+  }
+ }
+ .__commonCss {
+  padding: 1rem 1rem 4rem 1rem;
+ }
+ .__watch {
+  padding: 1rem 0 10rem 0;
+  .row > div {
+   padding: 0 1rem !important;
+  }
+  .videobox {
+   h3 {
+    font-size: 1rem;
+   }
+   .row {
+    & > div {
+     .profilePicture {
+      width: 30px;
+      height: 30px;
+     }
+     button {
+      font-size: 0.7rem;
+      padding: 0.3rem 0.8rem;
+      margin-left: 0.5rem;
+     }
+     .profile {
+      padding: 0 0.5rem;
+      p {
+       font-size: 0.6rem;
+      }
+      span {
+       font-size: 0.6rem;
+      }
      }
     }
    }

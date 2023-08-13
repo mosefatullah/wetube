@@ -43,7 +43,7 @@ body {
 
 .__navbar {
   width: 100%;
-  height: 70px;
+  min-height: 70px;
   position: sticky;
   top: 0;
   left: 0;
@@ -59,9 +59,10 @@ body {
 .__navbar .navbar .navbar-brand h2 {
   margin: 0;
   margin-left: 0.3rem;
+  padding-top: 0.2rem;
   color: #fff;
   font-weight: 800;
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   letter-spacing: -1px;
 }
 .__navbar .navbar .input-group {
@@ -151,6 +152,7 @@ body {
 }
 .__sidemenu button svg {
   fill: #fff;
+  margin-top: -0.2rem;
   margin-right: 1rem;
 }
 .__sidemenu button:hover {
@@ -159,18 +161,26 @@ body {
 .__sidemenu button:active {
   background-color: rgba(255, 255, 255, 0.15);
 }
-.__sidemenu a.active button {
+.__sidemenu .mobileBtn {
+  display: none;
+}
+
+a.active button {
   background-color: rgba(52, 152, 219, 0.2);
   font-weight: 800;
   color: #3498db;
 }
-.__sidemenu a.active svg {
+a.active svg {
   fill: #3498db;
 }
+a.active:hover button {
+  background-color: rgba(52, 152, 219, 0.2);
+}
 
-.__home > .row > div:last-child {
+.__commonCss > .row > div:last-child {
   padding: 0;
 }
+
 .__home .__video-container .__video a {
   width: 100%;
   display: block;
@@ -247,6 +257,7 @@ body {
 .__watch .videobox .row > div {
   display: flex;
   align-items: center;
+  padding: 0;
 }
 .__watch .videobox .row > div .profilePicture {
   width: 40px;
@@ -273,4 +284,74 @@ body {
 .__watch .videobox .row > div .profile span {
   font-size: 0.7rem;
   color: rgba(255, 255, 255, 0.5);
+}
+
+@media screen and (max-width: 991px) {
+  .__sidemenu button {
+    width: 48px;
+    height: 48px;
+    overflow: hidden;
+    color: transparent;
+    margin-top: 0.3rem;
+    margin-bottom: 0.3rem;
+  }
+  .__sidemenu a.active button {
+    color: transparent;
+  }
+  .__sidemenu .mobileBtn {
+    display: block;
+  }
+}
+@media screen and (max-width: 768px) {
+  .__navbar .navbar .navbar-brand h2 {
+    font-size: 1rem;
+    margin-top: 0.1rem;
+  }
+  .__navbar .navbar .input-group {
+    max-width: 400px;
+  }
+  .__navbar .navbar .input-group input {
+    font-size: 0.8rem;
+  }
+  .__sidemenu {
+    padding: 1rem 1rem 4rem 0;
+  }
+  .__sidemenu button {
+    width: 100%;
+    overflow: auto;
+    color: #fff;
+  }
+  .__sidemenu a.active button {
+    color: #3498db;
+  }
+  .__commonCss {
+    padding: 1rem 1rem 4rem 1rem;
+  }
+  .__watch {
+    padding: 1rem 0 10rem 0;
+  }
+  .__watch .row > div {
+    padding: 0 1rem !important;
+  }
+  .__watch .videobox h3 {
+    font-size: 1rem;
+  }
+  .__watch .videobox .row > div .profilePicture {
+    width: 30px;
+    height: 30px;
+  }
+  .__watch .videobox .row > div button {
+    font-size: 0.7rem;
+    padding: 0.3rem 0.8rem;
+    margin-left: 0.5rem;
+  }
+  .__watch .videobox .row > div .profile {
+    padding: 0 0.5rem;
+  }
+  .__watch .videobox .row > div .profile p {
+    font-size: 0.6rem;
+  }
+  .__watch .videobox .row > div .profile span {
+    font-size: 0.6rem;
+  }
 }

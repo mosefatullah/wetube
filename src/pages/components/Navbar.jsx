@@ -69,7 +69,7 @@ function Navbar() {
        </svg>
       </button>
      </div>
-     <div className="menu d-flex gap-2">
+     <div className="menu d-none d-lg-flex gap-2">
       <button className="btn-round">
        <svg
         xmlns="http://www.w3.org/2000/svg"

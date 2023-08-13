@@ -44,17 +44,16 @@ function Watch() {
    <Navbar />
    <div className="__watch">
     <div className="container-fluid">
-     <div className="row">
-      <div className="col-lg-9">
+     <div className="row row-gap-4">
+      <div className="col-lg-8">
        <Videobox src={thumbnailUrl} title={title} channelSrc={channelSrc} />
       </div>
-      <div className="col-lg-3">
-       <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid tenetur
-        doloribus veniam sequi quaerat reiciendis similique, adipisci saepe
-        deleniti necessitatibus corporis architecto. Numquam ratione voluptatum
-        assumenda est ex. Iusto, quo?
-       </p>
+      <div className="col-lg-4">
+       <div className="card card-body text-black">
+        <h3>Description</h3>
+        <hr />
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos, pariatur amet sit sed impedit nulla eos dicta ducimus eligendi cupiditate quod voluptatem sequi beatae incidunt esse maiores porro repellat et.</p>
+       </div>
       </div>
      </div>
     </div>

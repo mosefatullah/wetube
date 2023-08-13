@@ -6,6 +6,7 @@ import History from "./pages/History";
 import Subscriptions from "./pages/Subscriptions";
 import WatchLater from "./pages/WatchLater";
 import Watch from "./pages/Watch";
+import Error from './pages/Error';
 
 function App() {
  return (
@@ -18,6 +19,7 @@ function App() {
      <Route path="/subscriptions" element={<Subscriptions />}></Route>
      <Route path="/watchLater" element={<WatchLater />}></Route>
      <Route path="/watch" element={<Watch />}></Route>
+     <Route path="/*" element={<Error />}></Route>
     </Routes>
    </BrowserRouter>
   </div>
