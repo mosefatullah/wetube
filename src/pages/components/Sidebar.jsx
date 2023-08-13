@@ -1,10 +1,10 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 function Navbar() {
  return (
   <div className="__sidemenu">
-   <Link to="/">
+   <NavLink to="/" className="sidebar-link">
     <button>
      <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -18,8 +18,8 @@ function Navbar() {
      </svg>
      Home
     </button>
-   </Link>
-   <Link to="/subscriptions">
+   </NavLink>
+   <NavLink to="/subscriptions" className="sidebar-link">
     <button>
      <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -33,9 +33,9 @@ function Navbar() {
      </svg>
      Subscriptions
     </button>
-   </Link>
+   </NavLink>
    <hr />
-   <Link to="/library">
+   <NavLink to="/library" className="sidebar-link">
     <button>
      <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -49,8 +49,8 @@ function Navbar() {
      </svg>
      Library
     </button>
-   </Link>
-   <Link to="/history">
+   </NavLink>
+   <NavLink to="/history" className="sidebar-link">
     <button>
      <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -64,8 +64,8 @@ function Navbar() {
      </svg>
      History
     </button>
-   </Link>
-   <Link to="/watchLater">
+   </NavLink>
+   <NavLink to="/watchLater" className="sidebar-link">
     <button>
      <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -86,9 +86,9 @@ function Navbar() {
      </svg>
      Watch Later
     </button>
-   </Link>
+   </NavLink>
    <hr />
-   <Link to="/watch">
+   <Link to="/watch?v=1">
     <button>Watch a Video</button>
    </Link>
   </div>

@@ -1,12 +1,17 @@
 import React from "react";
+import logo from "./../../logo.png";
+import { Link } from 'react-router-dom';
 
 function Navbar() {
  return (
   <>
    <div className="__navbar">
+    <div className="loading-bar-container">
+     <div className="loading-bar"></div>
+    </div>
     <div className="navbar d-flex align-items-center">
-     <div className="navbar-brand d-flex align-items-center gap-3">
-      <button className="btn-round">
+     <div className="navbar-brand d-flex align-items-center">
+      <button className="btn-round me-2">
        <svg
         xmlns="http://www.w3.org/2000/svg"
         height="24px"
@@ -18,7 +23,10 @@ function Navbar() {
         <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" />
        </svg>
       </button>
-      <h2>WeTube</h2>
+      <Link to="/" className="d-flex">
+       <img src={logo} alt="Logo" />
+       <h2>WeTube</h2>
+      </Link>
      </div>
      <div className="input-group">
       <input

@@ -19,17 +19,19 @@ function Home() {
  return (
   <>
    <Navbar />
-   <div className="row">
-    <div className="col-md-2">
-     <Sidebar />
-    </div>
-    <div className="col-md-10">
-     <div className="__video-container">
-      <div className="row row-gap-4">
-       {videos.map((x, i) => {
-        if (i > 30) return;
-        return <Video name={x.title} thumb={x.thumbnailUrl} id={x.id} />;
-       })}
+   <div className="__home">
+    <div className="row">
+     <div className="col-md-2">
+      <Sidebar />
+     </div>
+     <div className="col-md-10">
+      <div className="__video-container">
+       <div className="row row-gap-4">
+        {videos.map((x, i) => {
+         if (i > 200) return;
+         return <Video name={x.title} thumb={x.thumbnailUrl} id={x.id} />;
+        })}
+       </div>
       </div>
      </div>
     </div>
