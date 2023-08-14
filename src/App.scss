@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;800&display=swap");
 
 $primary-color: #0f0f0f;
+$secondary-color: #212529;
 $primary-text-color: #fff;
 $primary-other-color: #3498db;
 
@@ -190,7 +191,6 @@ a.active {
  }
 }
 
-
 .__commonCss {
  & > .row > div:last-child {
   padding: 0;
@@ -257,25 +257,21 @@ a.active {
 }
 
 .__watch {
- padding: 1rem 5rem;
+ padding: 1rem;
  padding-bottom: 10rem;
- .row > div:first-child {
-  padding: 0 2rem;
- }
  .videobox {
   img {
    width: 100%;
    object-fit: cover;
    aspect-ratio: 16/9;
-  }
-  h3 {
-   font-weight: 800;
-   padding-top: 1rem;
-   font-size: 1.2rem;
-   text-transform: capitalize;
+   border-top-left-radius: 0.6rem;
+   border-top-right-radius: 0.6rem;
   }
   .row {
-   padding: 0.1rem 0;
+   padding: 2rem 1rem;
+   border-bottom-left-radius: 0.6rem;
+   border-bottom-right-radius: 0.6rem;
+   background-color: $secondary-color;
    & > div {
     display: flex;
     align-items: center;
@@ -286,27 +282,83 @@ a.active {
      border-radius: 10rem;
      object-fit: cover;
     }
-    button {
+    .btn.connect {
      background-color: $primary-text-color;
      color: rgba($primary-color, 0.88);
      font-weight: 800;
      font-size: 0.85rem;
      padding: 0.35rem 1rem;
+     padding-left: 0.5rem;
      margin-left: 1rem;
+     svg {
+      margin-right: 0.3rem;
+     }
     }
     .profile {
      padding: 0 0.8rem;
      line-height: 1rem;
      p {
       margin: 0;
-      font-size: 0.7rem;
+      font-size: 0.8rem;
      }
      span {
       font-size: 0.7rem;
       color: rgba($primary-text-color, 0.5);
      }
     }
+    .all {
+     margin-left: auto;
+     .btn {
+      background-color: rgba($primary-text-color, 0.1);
+      color: $primary-text-color;
+      font-weight: 800;
+      font-size: 0.85rem;
+      padding: 0.35rem 1rem;
+      border: none;
+      span {
+       margin-left: 0.3rem;
+       font-size: 0.7rem;
+      }
+      svg {
+       fill: $primary-text-color;
+      }
+      &.active {
+       background-color: rgba($primary-other-color, 0.2);
+       svg {
+        fill: $primary-other-color;
+       }
+      }
+      &:active {
+       transform: scale(0.9);
+      }
+     }
+     .btn.share {
+      svg {
+       margin-top: -4px;
+      }
+     }
+    }
    }
+  }
+ }
+ .card-body {
+  background: $secondary-color !important;
+  color: $primary-text-color;
+  padding: 1.5rem;
+  h2 {
+   font-weight: 800;
+   font-size: 1.2rem;
+   text-transform: capitalize;
+   letter-spacing: 1px;
+   padding-bottom: 0.7rem;
+  }
+  h3 {
+   font-size: 0.8rem;
+   font-weight: 800;
+   margin: 0;
+  }
+  p {
+   font-size: 0.8rem;
   }
  }
 }
@@ -330,9 +382,19 @@ a.active {
  }
 }
 
+@media screen and (min-width: 1200px) {
+    .__watch{
+        padding: 1rem;
+        .row>div{
+            padding: 0 2rem !important;
+        }
+    }
+}
+
 @media screen and (max-width: 768px) {
  .__navbar {
   .navbar {
+   padding-bottom: 1rem;
    .navbar-brand {
     h2 {
      font-size: 1rem;
@@ -369,8 +431,10 @@ a.active {
   .videobox {
    h3 {
     font-size: 1rem;
+    line-height: 1.6rem;
    }
    .row {
+    padding: 1rem 0.4rem;
     & > div {
      .profilePicture {
       width: 30px;
@@ -381,10 +445,14 @@ a.active {
       padding: 0.3rem 0.8rem;
       margin-left: 0.5rem;
      }
+     .all {
+      margin-left: -0.5rem;
+     }
      .profile {
       padding: 0 0.5rem;
+      line-height: 0.8rem;
       p {
-       font-size: 0.6rem;
+       font-size: 0.7rem;
       }
       span {
        font-size: 0.6rem;

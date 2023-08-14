@@ -234,25 +234,21 @@ a.active:hover button {
 }
 
 .__watch {
-  padding: 1rem 5rem;
+  padding: 1rem;
   padding-bottom: 10rem;
-}
-.__watch .row > div:first-child {
-  padding: 0 2rem;
 }
 .__watch .videobox img {
   width: 100%;
   object-fit: cover;
   aspect-ratio: 16/9;
-}
-.__watch .videobox h3 {
-  font-weight: 800;
-  padding-top: 1rem;
-  font-size: 1.2rem;
-  text-transform: capitalize;
+  border-top-left-radius: 0.6rem;
+  border-top-right-radius: 0.6rem;
 }
 .__watch .videobox .row {
-  padding: 0.1rem 0;
+  padding: 2rem 1rem;
+  border-bottom-left-radius: 0.6rem;
+  border-bottom-right-radius: 0.6rem;
+  background-color: #212529;
 }
 .__watch .videobox .row > div {
   display: flex;
@@ -265,13 +261,17 @@ a.active:hover button {
   border-radius: 10rem;
   object-fit: cover;
 }
-.__watch .videobox .row > div button {
+.__watch .videobox .row > div .btn.connect {
   background-color: #fff;
   color: rgba(15, 15, 15, 0.88);
   font-weight: 800;
   font-size: 0.85rem;
   padding: 0.35rem 1rem;
+  padding-left: 0.5rem;
   margin-left: 1rem;
+}
+.__watch .videobox .row > div .btn.connect svg {
+  margin-right: 0.3rem;
 }
 .__watch .videobox .row > div .profile {
   padding: 0 0.8rem;
@@ -279,11 +279,61 @@ a.active:hover button {
 }
 .__watch .videobox .row > div .profile p {
   margin: 0;
-  font-size: 0.7rem;
+  font-size: 0.8rem;
 }
 .__watch .videobox .row > div .profile span {
   font-size: 0.7rem;
   color: rgba(255, 255, 255, 0.5);
+}
+.__watch .videobox .row > div .all {
+  margin-left: auto;
+}
+.__watch .videobox .row > div .all .btn {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  font-weight: 800;
+  font-size: 0.85rem;
+  padding: 0.35rem 1rem;
+  border: none;
+}
+.__watch .videobox .row > div .all .btn span {
+  margin-left: 0.3rem;
+  font-size: 0.7rem;
+}
+.__watch .videobox .row > div .all .btn svg {
+  fill: #fff;
+}
+.__watch .videobox .row > div .all .btn.active {
+  background-color: rgba(52, 152, 219, 0.2);
+}
+.__watch .videobox .row > div .all .btn.active svg {
+  fill: #3498db;
+}
+.__watch .videobox .row > div .all .btn:active {
+  transform: scale(0.9);
+}
+.__watch .videobox .row > div .all .btn.share svg {
+  margin-top: -4px;
+}
+.__watch .card-body {
+  background: #212529 !important;
+  color: #fff;
+  padding: 1.5rem;
+}
+.__watch .card-body h2 {
+  font-weight: 800;
+  font-size: 1.2rem;
+  text-transform: capitalize;
+  letter-spacing: 1px;
+  padding-bottom: 0.7rem;
+}
+.__watch .card-body h3 {
+  font-size: 0.8rem;
+  font-weight: 800;
+  margin: 0;
+}
+.__watch .card-body p {
+  font-size: 0.8rem;
 }
 
 @media screen and (max-width: 991px) {
@@ -302,7 +352,18 @@ a.active:hover button {
     display: block;
   }
 }
+@media screen and (min-width: 1200px) {
+  .__watch {
+    padding: 1rem;
+  }
+  .__watch .row > div {
+    padding: 0 2rem !important;
+  }
+}
 @media screen and (max-width: 768px) {
+  .__navbar .navbar {
+    padding-bottom: 1rem;
+  }
   .__navbar .navbar .navbar-brand h2 {
     font-size: 1rem;
     margin-top: 0.1rem;
@@ -335,6 +396,10 @@ a.active:hover button {
   }
   .__watch .videobox h3 {
     font-size: 1rem;
+    line-height: 1.6rem;
+  }
+  .__watch .videobox .row {
+    padding: 1rem 0.4rem;
   }
   .__watch .videobox .row > div .profilePicture {
     width: 30px;
@@ -345,11 +410,15 @@ a.active:hover button {
     padding: 0.3rem 0.8rem;
     margin-left: 0.5rem;
   }
+  .__watch .videobox .row > div .all {
+    margin-left: -0.5rem;
+  }
   .__watch .videobox .row > div .profile {
     padding: 0 0.5rem;
+    line-height: 0.8rem;
   }
   .__watch .videobox .row > div .profile p {
-    font-size: 0.6rem;
+    font-size: 0.7rem;
   }
   .__watch .videobox .row > div .profile span {
     font-size: 0.6rem;
