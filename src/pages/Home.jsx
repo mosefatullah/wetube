@@ -3,24 +3,24 @@ import Navbar from "./components/Navbar";
 import Sidebar from "./components/Sidebar";
 import Video from "./components/Video";
 import NetError from "./NetError";
+import jsonData from "./data.json";
 
 function Home() {
  const [videos, setVideos] = useState([]);
  const [error, setError] = useState(false);
 
  useEffect(() => {
-  const fetchData = async () => {
+  const fetchData = () => {
    try {
-    const response = await fetch(
-     "https://jsonplaceholder.typicode.com/photos"
-    );
-    const json = await response.json();
-    if (response.ok) {
-     setVideos(json);
-    } else {
-        console.log(await response);
-     setError();
-    }
+    //const response = await fetch("data.json");
+    //const json = await response.json();
+    //if (response.ok) {
+    let json = jsonData;
+    setVideos(json);
+    //} else {
+    // console.log(await response);
+    // setError();
+    //}
    } catch (error) {
     setError("Network error occurred.");
    }
@@ -29,7 +29,7 @@ function Home() {
   fetchData();
  }, []);
 
- if (error!==false) {
+ if (error !== false) {
   return <NetError msg={error} />;
  }
  return (
@@ -46,7 +46,16 @@ function Home() {
         {videos.map((x, i) => {
          if (x) {
           if (i > 200) return;
-          return <Video name={x.title} thumb={x.thumbnailUrl} id={x.id} />;
+          return (
+           <Video
+            id={i}
+            name={x.title}
+            thumb={x.thumbnail}
+            pub={x.pubDate}
+            channelName={x.author}
+            channelThumb={x.thumbnail}
+           />
+          );
          }
         })}
        </div>

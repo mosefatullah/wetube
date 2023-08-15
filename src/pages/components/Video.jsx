@@ -13,8 +13,8 @@ function Video(props) {
      <div className="info d-flex">
       <img
        className="align-self-center"
-       src="https://yt3.ggpht.com/NHF6hPNCAXWMOMpJr06_rCwN5JCf2dFg4MGQRMG3eQU4-s95FyDPMmYn580rJ7rW0h2WzLUsri8=s68-c-k-c0x00ffffff-no-rj"
-       alt="Channel Picture"
+       src={props.channelThumb}
+       alt={props.channelName}
       />
       <p>{props.name}</p>
      </div>

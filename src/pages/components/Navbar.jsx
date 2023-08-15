@@ -1,6 +1,7 @@
 import React from "react";
 import logo from "./../../logo.png";
 import { Link } from "react-router-dom";
+import Sidebar from "../components/Sidebar";
 
 function Navbar() {
  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
@@ -14,13 +15,19 @@ function Navbar() {
      <div className="navbar-brand d-flex align-items-center">
       <button
        className="btn-round me-2"
-       onClick={
-        ()=>{
-            setIsMenuOpen(!isMenuOpen);
-            document.querySelectorAll(".__commonCss .row>div")[0].classList.toggle("d-none");
-            document.querySelectorAll(".__commonCss .row>div")[1].classList.toggle("w-100");
+       onClick={() => {
+        setIsMenuOpen(!isMenuOpen);
+        if (document.querySelectorAll(".__commonCss")[0]) {
+         document
+          .querySelectorAll(".__commonCss .row>div")[0]
+          .classList.toggle("d-none");
+         document
+          .querySelectorAll(".__commonCss .row>div")[1]
+          .classList.toggle("w-100");
+        } else {
+         document.querySelectorAll(".offcanvas")[0].classList.toggle("show");
         }
-       }
+       }}
       >
        <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -114,6 +121,28 @@ function Navbar() {
       </button>
      </div>
     </div>
+   </div>
+
+   <div
+    className="offcanvas offcanvas-start bg-black text-white"
+    tabIndex="-1"
+    id="menuCanvas"
+   >
+    <div className="offcanvas-header">
+     <h5 className="offcanvas-title">
+      Wetube
+     </h5>
+     <button
+      className="btn btn-dark btn-sm"
+      onClick={() => {
+       setIsMenuOpen(!isMenuOpen);
+       document.querySelectorAll(".offcanvas")[0].classList.toggle("show");
+      }}
+     >
+      Close
+     </button>
+    </div>
+    <div className="offcanvas-body">{<Sidebar />}</div>
    </div>
   </>
  );

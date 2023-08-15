@@ -9,7 +9,7 @@ function NetError({msg}) {
  return (
   <>
    <Navbar />
-   <div className="__home">
+   <div className="__home __commonCss">
     <div className="row">
      <div className="col-md-2">
       <Sidebar />
