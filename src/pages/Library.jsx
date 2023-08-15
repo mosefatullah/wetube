@@ -6,12 +6,14 @@ function Library() {
  return (
   <>
    <Navbar />
-   <div className="__commonCss row">
-    <div className="col-md-2">
-     <Sidebar />
-    </div>
-    <div className="col-md-9">
-     <div>Library</div>
+   <div className="__commonCss">
+    <div className="row">
+     <div className="col-md-2">
+      <Sidebar />
+     </div>
+     <div className="col-md-9">
+      <div>Library</div>
+     </div>
     </div>
    </div>
   </>

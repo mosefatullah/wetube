@@ -6,12 +6,14 @@ function History() {
  return (
   <>
    <Navbar />
-   <div className="__commonCss row">
-    <div className="col-md-2">
-     <Sidebar />
-    </div>
-    <div className="col-md-9">
-     <div>History</div>
+   <div className="__commonCss">
+    <div className="row">
+     <div className="col-md-2">
+      <Sidebar />
+     </div>
+     <div className="col-md-9">
+      <div>History</div>
+     </div>
     </div>
    </div>
   </>

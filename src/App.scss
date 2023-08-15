@@ -193,7 +193,7 @@ a.active {
 
 .__commonCss {
  & > .row > div:last-child {
-  padding: 0;
+  padding: 1rem 0;
  }
 }
 .__home {
@@ -363,32 +363,25 @@ a.active {
  }
 }
 
-@media screen and (max-width: 991px) {
- .__sidemenu {
-  button {
-   width: 48px;
-   height: 48px;
-   overflow: hidden;
-   color: transparent;
-   margin-top: 0.3rem;
-   margin-bottom: 0.3rem;
-  }
-  a.active button {
-   color: transparent;
-  }
-  .mobileBtn {
-   display: block;
-  }
+@media screen and (max-width: 1500px) {
+ .__home .row > div:first-child {
+  display: none;
+ }
+ .__home .row > div:last-child {
+  width: 100%;
+ }
+ .__commonCss {
+  padding: 1rem 1rem 4rem 1rem;
  }
 }
 
 @media screen and (min-width: 1200px) {
-    .__watch{
-        padding: 1rem;
-        .row>div{
-            padding: 0 2rem !important;
-        }
-    }
+ .__watch {
+  padding: 1rem;
+  .row > div {
+   padding: 0 2rem !important;
+  }
+ }
 }
 
 @media screen and (max-width: 768px) {
@@ -420,8 +413,8 @@ a.active {
    color: $primary-other-color;
   }
  }
- .__commonCss {
-  padding: 1rem 1rem 4rem 1rem;
+ .__home .row > div:first-child {
+  display: block;
  }
  .__watch {
   padding: 1rem 0 10rem 0;

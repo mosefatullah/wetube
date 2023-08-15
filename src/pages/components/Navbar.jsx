@@ -1,8 +1,9 @@
 import React from "react";
 import logo from "./../../logo.png";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 function Navbar() {
+ const [isMenuOpen, setIsMenuOpen] = React.useState(false);
  return (
   <>
    <div className="__navbar">
@@ -11,7 +12,16 @@ function Navbar() {
     </div>
     <div className="navbar d-flex align-items-center">
      <div className="navbar-brand d-flex align-items-center">
-      <button className="btn-round me-2">
+      <button
+       className="btn-round me-2"
+       onClick={
+        ()=>{
+            setIsMenuOpen(!isMenuOpen);
+            document.querySelectorAll(".__commonCss .row>div")[0].classList.toggle("d-none");
+            document.querySelectorAll(".__commonCss .row>div")[1].classList.toggle("w-100");
+        }
+       }
+      >
        <svg
         xmlns="http://www.w3.org/2000/svg"
         height="24px"

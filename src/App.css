@@ -178,7 +178,7 @@ a.active:hover button {
 }
 
 .__commonCss > .row > div:last-child {
-  padding: 0;
+  padding: 1rem 0;
 }
 
 .__home .__video-container .__video a {
@@ -336,20 +336,15 @@ a.active:hover button {
   font-size: 0.8rem;
 }
 
-@media screen and (max-width: 991px) {
-  .__sidemenu button {
-    width: 48px;
-    height: 48px;
-    overflow: hidden;
-    color: transparent;
-    margin-top: 0.3rem;
-    margin-bottom: 0.3rem;
+@media screen and (max-width: 1500px) {
+  .__home .row > div:first-child {
+    display: none;
   }
-  .__sidemenu a.active button {
-    color: transparent;
+  .__home .row > div:last-child {
+    width: 100%;
   }
-  .__sidemenu .mobileBtn {
-    display: block;
+  .__commonCss {
+    padding: 1rem 1rem 4rem 1rem;
   }
 }
 @media screen and (min-width: 1200px) {
@@ -385,8 +380,8 @@ a.active:hover button {
   .__sidemenu a.active button {
     color: #3498db;
   }
-  .__commonCss {
-    padding: 1rem 1rem 4rem 1rem;
+  .__home .row > div:first-child {
+    display: block;
   }
   .__watch {
     padding: 1rem 0 10rem 0;

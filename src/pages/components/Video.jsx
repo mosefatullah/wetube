@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 function Video(props) {
  return (
-  <div className="__video col-sm-6 col-md-3">
+  <div className="__video col-sm-6 col-md-5 col-lg-4 col-xxl-3">
    <Link to={"/watch?v=" + props.id}>
     <div className="video">
      <div className="thumbnail">
