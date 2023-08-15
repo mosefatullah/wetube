@@ -5,7 +5,6 @@ function Videobox({ id, name, thumb, channelName, channelThumb, video }) {
   <>
    <div className="videobox">
     <img src={thumb} alt={name} />
-    <video src={video}></video>
     <div className="row row-gap-4">
      <div className="col-12 col-md-6">
       <img className="profilePicture" src={channelThumb} alt={channelName} />

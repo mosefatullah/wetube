@@ -331,6 +331,10 @@ body {
   font-weight: 800;
   margin: 0;
 }
+.__watch .__comments .heading svg {
+  fill: #fff;
+  margin-right: 0.5rem;
+}
 .__watch .__comments .count {
   margin: 0;
   font-size: 0.7rem;

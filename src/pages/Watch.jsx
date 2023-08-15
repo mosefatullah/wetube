@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Navbar from "./components/Navbar";
 import Videobox from "./components/Videobox";
 import jsonData from "./data.json";
-import Linkify from './components/Linkify';
+import Linkify from "./components/Linkify";
 
 function Watch() {
  const v = new URLSearchParams(window.location.search).get("v");
@@ -68,9 +68,11 @@ function Watch() {
         <h3>0 views - {pub}</h3>
         <hr />
         <p>
-            <Linkify text={description.split("\n").map((item, index) => {
-          return index === 0 ? item : [<br key={index} />, item];
-         })}/>
+         <Linkify
+          text={description.split("\n").map((item, index) => {
+           return index === 0 ? item : [<br key={index} />, item];
+          })}
+         />
         </p>
         <button
          className="btn btn-toggle-description"
@@ -100,7 +102,17 @@ function Watch() {
        />
        <div className="__comments">
         <div className="d-flex">
-         <p className="heading">Comments</p>
+         <p className="heading">
+          <svg
+           xmlns="http://www.w3.org/2000/svg"
+           height="18"
+           viewBox="0 -960 960 960"
+           width="18"
+          >
+           <path d="M880-80 720-240H140q-24 0-42-18t-18-42v-520q0-24 18-42t42-18h680q24 0 42 18t18 42v740ZM140-300v-520 520Zm606 0 74 80v-600H140v520h606Z" />
+          </svg>
+          Comments
+         </p>
          <div className="d-flex ms-auto">
           <p className="count">0 Comments</p>
           <button>Show all comments</button>
