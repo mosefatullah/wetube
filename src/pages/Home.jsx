@@ -4,23 +4,26 @@ import Sidebar from "./components/Sidebar";
 import Video from "./components/Video";
 import NetError from "./NetError";
 import jsonData from "./data.json";
+import blank from "./blank.jpg";
 
 function Home() {
  const [videos, setVideos] = useState([]);
  const [error, setError] = useState(false);
 
  useEffect(() => {
-  const fetchData = () => {
+  const fetchData =async () => {
    try {
-    //const response = await fetch("data.json");
-    //const json = await response.json();
-    //if (response.ok) {
-    let json = jsonData;
-    setVideos(json);
-    //} else {
-    // console.log(await response);
-    // setError();
-    //}
+    const response = await fetch("playgroup.json");
+    const json = await response.json();
+    if (response.ok) {
+    ///let json = jsonData;
+    ///setVideos(json);
+    console.log(json);
+     setVideos(json);
+    } else {
+     console.log(await response);
+     setError();
+    }
    } catch (error) {
     setError("Network error occurred.");
    }
@@ -28,6 +31,8 @@ function Home() {
 
   fetchData();
  }, []);
+
+ //https://firebasestorage.googleapis.com/v0/b/wetube-dev.appspot.com/o/photos%2Faymansadiq.jpg?alt=media
 
  if (error !== false) {
   return <NetError msg={error} />;
@@ -49,11 +54,12 @@ function Home() {
           return (
            <Video
             id={i}
-            name={x.title}
-            thumb={x.thumbnail}
-            pub={x.pubDate}
-            channelName={x.author}
-            channelThumb={x.thumbnail}
+            name={x.title || "Lorem Ipsum Dolor Sit Amet Consectetur Adipiscing Elit"}
+            thumb={x.thumbnail || blank}
+            pub={x.publicationDate || "0"}
+            channelName={x.channelName || "Channel Name"}
+            channelThumb={x.channelThumbnail || blank}
+            duration={x.duration || "00:00"}
            />
           );
          }

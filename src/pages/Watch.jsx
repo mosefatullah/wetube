@@ -15,11 +15,6 @@ function Watch() {
  const [pub, setPub] = useState("No Date");
  const [description, setDescription] = useState("No Description");
 
- //  const [videoId, setVideoId] = useState(v);
- //  const [thumbnailUrl, setThumbnailUrl] = useState("");
- //  const [title, setTitle] = useState("");
- //  const [channelSrc, setChannelSrc] = useState("");
-
  const [showDescription, setShowDescription] = useState(false);
  const [btnDescription, setBtnDescription] = useState("More");
 
@@ -29,16 +24,16 @@ function Watch() {
     const data = jsonData[v];
     console.log(data);
 
-    const inputDateString = data.pubDate;
+    const inputDateString = data.publicationDate;
     const parsedDate = new Date(inputDateString);
     const options = { year: "numeric", month: "long", day: "numeric" };
     const formattedDate = new Intl.DateTimeFormat("en-US", options).format(
      parsedDate
     );
 
-    setVideo(data.link);
-    setChannelName(data.author);
-    setChannelThumb(data.thumbnail);
+    setVideo(data.videoUrl);
+    setChannelName(data.channelName);
+    setChannelThumb(data.channelThumbnail);
     setTitle(data.title);
     setThumb(data.thumbnail);
     setPub(formattedDate);
@@ -65,7 +60,9 @@ function Watch() {
       <div className="col-lg-4">
        <div className="card card-body bg-dark">
         <h2>{title}</h2>
-        <h3>0 views - {pub}</h3>
+        <h3>
+         0 views - {pub}
+        </h3>
         <hr />
         <p>
          <Linkify
