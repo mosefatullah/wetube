@@ -126,8 +126,12 @@ function Videobox({ id, name, thumb, channelName, channelThumb, video }) {
     <div
      className="video"
      style={{
-      backgroundColor:
-       isLoading === true ? "rgba(33, 37, 41,0.5)" : "transparent",
+      backgroundColor: "rgba(33, 37, 41,0.5)",
+      backgroundImage: `url(${thumb})`,
+      backgroundSize: "cover",
+      backgroundPosition: "center",
+      backgroundRepeat: "no-repeat",
+      backgroundBlendMode: "multiply",
      }}
     >
      {isLoading === true && (

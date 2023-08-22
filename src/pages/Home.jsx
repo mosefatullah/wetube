@@ -11,19 +11,17 @@ function Home() {
  const [error, setError] = useState(false);
 
  useEffect(() => {
-  const fetchData =async () => {
+  const fetchData = () => {
    try {
-    const response = await fetch("playgroup.json");
-    const json = await response.json();
-    if (response.ok) {
-    ///let json = jsonData;
-    ///setVideos(json);
-    console.log(json);
-     setVideos(json);
-    } else {
-     console.log(await response);
-     setError();
-    }
+    //const response = await fetch("data.json");
+    //const json = await response.json();
+    //if (response.ok) {
+    let json = jsonData;
+    setVideos(json);
+    //} else {
+    // console.log(await response);
+    // setError();
+    //}
    } catch (error) {
     setError("Network error occurred.");
    }
@@ -31,8 +29,6 @@ function Home() {
 
   fetchData();
  }, []);
-
- //https://firebasestorage.googleapis.com/v0/b/wetube-dev.appspot.com/o/photos%2Faymansadiq.jpg?alt=media
 
  if (error !== false) {
   return <NetError msg={error} />;

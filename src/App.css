@@ -196,6 +196,7 @@ body {
 }
 .__home .__video-container .__video .video .thumbnail img {
   width: 100%;
+  min-height: 200px;
   aspect-ratio: 16/9;
   background-color: rgba(255, 255, 255, 0.1);
   object-fit: cover;

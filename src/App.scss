@@ -216,6 +216,7 @@ body {
      width: 100%;
      img {
       width: 100%;
+      min-height: 200px;
       aspect-ratio: 16/9;
       background-color: rgba($primary-text-color, 0.1);
       object-fit: cover;
