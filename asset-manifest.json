@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/wetube/static/css/main.46988d38.css",
-    "main.js": "/wetube/static/js/main.20bd8542.js",
+    "main.js": "/wetube/static/js/main.4617d6ee.js",
     "static/js/787.f01fe18e.chunk.js": "/wetube/static/js/787.f01fe18e.chunk.js",
     "index.html": "/wetube/index.html",
     "main.46988d38.css.map": "/wetube/static/css/main.46988d38.css.map",
-    "main.20bd8542.js.map": "/wetube/static/js/main.20bd8542.js.map",
+    "main.4617d6ee.js.map": "/wetube/static/js/main.4617d6ee.js.map",
     "787.f01fe18e.chunk.js.map": "/wetube/static/js/787.f01fe18e.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.46988d38.css",
-    "static/js/main.20bd8542.js"
+    "static/js/main.4617d6ee.js"
   ]
 }
