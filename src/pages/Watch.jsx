@@ -4,7 +4,7 @@ import Videobox from "./components/Videobox";
 import jsonData from "./data.json";
 import Linkify from "./components/Linkify";
 
-function Watch() {
+function Watch() {  
  const v = new URLSearchParams(window.location.search).get("v");
  const [video, setVideo] = useState("");
 
