@@ -2,7 +2,7 @@ import React from "react";
 import Navbar from "./components/Navbar";
 import Sidebar from "./components/Sidebar";
 
-function NetError({msg}) {
+function NetError({ msg }) {
  function refreshPage() {
   window.location.reload(false);
  }
@@ -16,9 +16,20 @@ function NetError({msg}) {
      </div>
      <div className="col-md-10">
       <div className="text-center py-5 my-5">
+       <img
+        alt="Error"
+        src="https://cdn.pixabay.com/photo/2017/02/12/21/29/false-2061131_1280.png"
+        width="100px"
+       />
        <h2 className="fw-bold">An Error Occured!</h2>
-       <p>{msg !== undefined ? msg : `Please refresh the page or wait for some moment.`}</p>
-       <button className="btn btn-dark btn-sm mt-4" onClick={refreshPage}>Refresh the Page</button>
+       <p>
+        {msg !== undefined
+         ? msg
+         : `Please refresh the page or wait for some moment.`}
+       </p>
+       <button className="btn btn-dark btn-sm mt-4" onClick={refreshPage}>
+        Refresh the Page
+       </button>
       </div>
      </div>
     </div>

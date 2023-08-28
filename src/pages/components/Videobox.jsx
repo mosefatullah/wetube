@@ -3,14 +3,11 @@ import React, { useState, useRef, useEffect } from "react";
 function Videobox({ id, name, thumb, channelName, channelThumb, video }) {
  const [isLoading, setIsLoading] = useState(true);
  const [isPlaying, setIsPlaying] = useState(true);
- const [currentTime, setCurrentTime] = useState("00:00");
- const [duration, setDuration] = useState("00:00");
  const videoRef = useRef(null);
 
  useEffect(() => {
   const videoElement = videoRef.current;
   if (videoElement) {
-   videoElement.addEventListener("timeupdate", handleTimeUpdate);
    videoElement.addEventListener("loadedmetadata", handleLoadedMetadata);
    if (videoElement.paused) {
     setIsPlaying(false);
@@ -18,7 +15,6 @@ function Videobox({ id, name, thumb, channelName, channelThumb, video }) {
     setIsPlaying(true);
    }
    return () => {
-    videoElement.removeEventListener("timeupdate", handleTimeUpdate);
     videoElement.removeEventListener("loadedmetadata", handleLoadedMetadata);
    };
   }
@@ -43,60 +39,8 @@ function Videobox({ id, name, thumb, channelName, channelThumb, video }) {
   setIsPlaying(false);
  };
 
- const handleToggleFullscreen = () => {
-  const videoElement = videoRef.current;
-  if (videoElement) {
-   if (videoElement.requestFullscreen) {
-    videoElement.requestFullscreen();
-   } else if (videoElement.mozRequestFullScreen) {
-    videoElement.mozRequestFullScreen();
-   } else if (videoElement.webkitRequestFullscreen) {
-    videoElement.webkitRequestFullscreen();
-   } else if (videoElement.msRequestFullscreen) {
-    videoElement.msRequestFullscreen();
-   }
-  }
- };
-
- const handleTimeUpdate = () => {
-  const videoElement = videoRef.current;
-  if (videoElement) {
-   const currentMinutes = Math.floor(videoElement.currentTime / 60);
-   const currentSeconds = Math.floor(videoElement.currentTime % 60);
-   const durationMinutes = Math.floor(videoElement.duration / 60);
-   const durationSeconds = Math.floor(videoElement.duration % 60);
-   let a = `${currentMinutes.toString().padStart(2, "0")}:${currentSeconds
-    .toString()
-    .padStart(2, "0")}`;
-   let b = `${durationMinutes.toString().padStart(2, "0")}:${durationSeconds
-    .toString()
-    .padStart(2, "0")}`;
-   if (
-    !isNaN(currentMinutes) &&
-    !isNaN(currentSeconds) &&
-    !isNaN(durationMinutes) &&
-    !isNaN(durationSeconds)
-   ) {
-    setCurrentTime(a);
-    setDuration(b);
-   }
-  }
- };
-
  const handleLoadedMetadata = () => {
-  const videoElement = videoRef.current;
   setIsLoading(false);
-  if (videoElement) {
-   const durationMinutes = Math.floor(videoElement.duration / 60);
-   const durationSeconds = Math.floor(videoElement.duration % 60);
-   setDuration("00:00");
-   const a = `${durationMinutes.toString().padStart(2, "0")}:${durationSeconds
-    .toString()
-    .padStart(2, "0")}`;
-   if (!isNaN(durationMinutes) && !isNaN(durationSeconds)) {
-    setDuration(a);
-   }
-  }
  };
 
  const playIcon = (
@@ -137,7 +81,7 @@ function Videobox({ id, name, thumb, channelName, channelThumb, video }) {
      {isLoading === true && (
       <div
        className="spinner spinner-border text-primary"
-       style={{ width: "10rem", height: "10rem" }}
+       style={{ width: "8rem", height: "8rem", borderWidth: "0.5rem" }}
       ></div>
      )}
      <video
@@ -216,19 +160,6 @@ function Videobox({ id, name, thumb, channelName, channelThumb, video }) {
     </div>
    </div>
    <div className="__watch-bottom-control">
-    <div className="time-display">
-     {currentTime} / {duration}
-    </div>
-    <div className="fullscreen-button" onClick={handleToggleFullscreen}>
-     <svg
-      xmlns="http://www.w3.org/2000/svg"
-      height="22"
-      viewBox="0 -960 960 960"
-      width="22"
-     >
-      <path d="M200-200v-193h60v133h133v60H200Zm0-367v-193h193v60H260v133h-60Zm367 367v-60h133v-133h60v193H567Zm133-367v-133H567v-60h193v193h-60Z" />
-     </svg>
-    </div>
     <div
      className={`play-pause-button ${isPlaying === true ? "" : "bg-secondary"}`}
      onClick={handleTogglePlay}

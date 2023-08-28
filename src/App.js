@@ -11,7 +11,7 @@ import Error from './pages/Error';
 function App() {
  return (
   <div className="App">
-   <BrowserRouter basename="/project5">
+   <BrowserRouter basename="/wetube">
     <Routes>
      <Route path="/" element={<Home />}></Route>
      <Route path="/library" element={<Library />}></Route>

@@ -25,23 +25,21 @@ function Video(props) {
  return (
   <div className="__video col-sm-6 col-md-5 col-lg-4 col-xxl-3">
    <Link to={"/watch?v=" + props.id}>
-    <div className="video">
+    <div className="video" onClick={props.onClick || null}>
      <div className="thumbnail">
       <img src={props.thumb} alt={props.name} />
       <span>{props.duration}</span>
      </div>
-     <div className="info d-flex">
-      <img
-       src={props.channelThumb}
-       alt={props.channelName}
-      />
-      <div>
-       <p>{props.name}</p>
+     <div className="info">
+      <p>{props.name}</p>
+      <div className="d-flex">
+       <img src={props.channelThumb} alt={props.channelName} />
        <div className="details">
         <span>{props.channelName}</span>
         <br />
         <span>{ago}</span>
        </div>
+       <p className="ms-auto pe-1 vws">{props.views} Views</p>
       </div>
      </div>
     </div>

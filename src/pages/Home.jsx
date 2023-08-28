@@ -3,31 +3,32 @@ import Navbar from "./components/Navbar";
 import Sidebar from "./components/Sidebar";
 import Video from "./components/Video";
 import NetError from "./NetError";
-import jsonData from "./data.json";
 import blank from "./blank.jpg";
+
+import { db } from "../utils/firebase";
+import { onValue, ref } from "@firebase/database";
 
 function Home() {
  const [videos, setVideos] = useState([]);
  const [error, setError] = useState(false);
 
+ const fetchFiredb = () => {
+  try {
+   const query = ref(db, "videos");
+   return onValue(query, (snapshot) => {
+    const data = snapshot.val();
+    if (snapshot.exists()) {
+     setVideos(data);
+    } else {
+     setError("No video available!");
+    }
+   });
+  } catch (error) {
+   setError("Network error occurred.");
+  }
+ };
  useEffect(() => {
-  const fetchData = () => {
-   try {
-    //const response = await fetch("data.json");
-    //const json = await response.json();
-    //if (response.ok) {
-    let json = jsonData;
-    setVideos(json);
-    //} else {
-    // console.log(await response);
-    // setError();
-    //}
-   } catch (error) {
-    setError("Network error occurred.");
-   }
-  };
-
-  fetchData();
+  fetchFiredb();
  }, []);
 
  if (error !== false) {
@@ -46,16 +47,24 @@ function Home() {
        <div className="row row-gap-4">
         {videos.map((x, i) => {
          if (x) {
-          if (i > 200) return;
           return (
            <Video
             id={i}
-            name={x.title || "Lorem Ipsum Dolor Sit Amet Consectetur Adipiscing Elit"}
-            thumb={x.thumbnail || blank}
+            name={x.title || "Please Wait or Refresh the Page!"}
+            thumb={
+             "https://firebasestorage.googleapis.com/v0/b/wetube-dev.appspot.com/o/photos%2Fvideo%2F" +
+              x.thumbnail +
+              "?alt=media" || blank
+            }
             pub={x.publicationDate || "0"}
-            channelName={x.channelName || "Channel Name"}
-            channelThumb={x.channelThumbnail || blank}
+            channelName={x.channelName || "Error Occured"}
+            channelThumb={
+             "https://firebasestorage.googleapis.com/v0/b/wetube-dev.appspot.com/o/photos%2Fprofile%2F" +
+              x.channelThumbnail +
+              "?alt=media" || blank
+            }
             duration={x.duration || "00:00"}
+            views={x.views || "0"}
            />
           );
          }
