@@ -284,7 +284,8 @@ img::after {
 }
 .__watch .row > div:first-child .__video {
   width: 100%;
-  padding: 1rem 2rem;
+  padding: 1rem 0;
+  padding-right: 8rem;
 }
 .__watch .videobox .video {
   position: relative;
@@ -488,6 +489,11 @@ img::after {
     padding: 0 2rem !important;
   }
 }
+@media screen and (max-width: 1700px) {
+  .__watch .row > div:first-child .__video {
+    padding-right: 0 !important;
+  }
+}
 @media screen and (min-width: 985px) {
   .__watch .card-body {
     height: unset !important;
@@ -496,7 +502,13 @@ img::after {
     display: none;
   }
 }
-@media screen and (max-width: 985px) {
+@media screen and (max-width: 992px) {
+  .__watch > div > .row > div:first-child {
+    order: 2;
+  }
+  .__watch .__other-videos .__video {
+    padding-right: 0 !important;
+  }
   .__watch .card-body {
     height: 200px;
     overflow: hidden;
@@ -556,9 +568,6 @@ img::after {
   }
   .__watch .row > div {
     padding: 0 1rem !important;
-  }
-  .__watch .row > div:first-child {
-    order: 2;
   }
   .__watch .card-body h2 {
     font-size: 0.9rem !important;

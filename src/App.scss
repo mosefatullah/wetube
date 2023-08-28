@@ -304,13 +304,14 @@ img::after {
 .__watch {
  padding: 1rem;
  padding-bottom: 10rem;
- .__other-videos{
-    padding-top: 3rem;
+ .__other-videos {
+  padding-top: 3rem;
  }
  .row > div:first-child {
   .__video {
    width: 100%;
-   padding: 1rem 2rem;
+   padding: 1rem 0;
+   padding-right: 8rem;
   }
  }
  .videobox {
@@ -519,6 +520,16 @@ img::after {
  }
 }
 
+@media screen and (max-width: 1700px) {
+ .__watch {
+  .row > div:first-child {
+   .__video {
+    padding-right: 0 !important;
+   }
+  }
+ }
+}
+
 @media screen and (min-width: 985px) {
  .__watch {
   .card-body {
@@ -530,8 +541,16 @@ img::after {
  }
 }
 
-@media screen and (max-width: 985px) {
+@media screen and (max-width: 992px) {
  .__watch {
+  & > div > .row > div:first-child {
+   order: 2;
+  }
+  .__other-videos {
+   .__video {
+    padding-right: 0 !important;
+   }
+  }
   .card-body {
    height: 200px;
    overflow: hidden;
@@ -596,9 +615,6 @@ img::after {
   padding: 1rem 0 10rem 0;
   .row > div {
    padding: 0 1rem !important;
-  }
-  .row > div:first-child {
-   order: 2;
   }
   .card-body h2 {
    font-size: 0.9rem !important;
