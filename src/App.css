@@ -8,6 +8,7 @@
 
 ::-webkit-scrollbar {
   width: 7px;
+  height: 7px;
 }
 
 ::-webkit-scrollbar-track {
@@ -127,8 +128,23 @@ img::after {
 .__navbar .btn-round:hover {
   background-color: rgba(255, 255, 255, 0.1);
 }
-.__navbar .btn-round:active {
+.__navbar .btn-round:active, .__navbar .btn-round.active {
   background-color: rgba(255, 255, 255, 0.15);
+}
+.__navbar .__account-menu {
+  position: absolute;
+  right: 0;
+  width: 300px;
+  height: 400px;
+  background-color: #212529;
+  border-radius: 0.8rem;
+  padding: 1rem;
+  z-index: 100000;
+  font-size: 0.8rem;
+  overflow-y: scroll;
+}
+.__navbar .__account-menu.hide {
+  display: none;
 }
 .__navbar .loading-bar-container {
   position: fixed;
@@ -274,13 +290,42 @@ img::after {
   opacity: 1;
 }
 
+.__category-container {
+  margin: 0.1rem 0;
+  margin-bottom: 1rem;
+  white-space: nowrap;
+}
+.__category-container .category {
+  height: fit-content;
+  width: fit-content;
+  padding: 0.3rem 0.8rem;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  border-radius: 0.8rem;
+  border: 0;
+  font-size: 0.8rem;
+  margin: 0 0.5rem;
+}
+.__category-container .category svg {
+  fill: #fff;
+  margin-top: -0.2rem;
+  margin-right: 1rem;
+}
+.__category-container .category.active {
+  background-color: rgba(255, 255, 255, 0.7);
+  color: #0f0f0f;
+}
+.__category-container .category:hover {
+  opacity: 0.8;
+}
+.__category-container .category:active {
+  opacity: 0.6;
+}
+
 /* __WATCH */
 .__watch {
   padding: 1rem;
   padding-bottom: 10rem;
-}
-.__watch .__other-videos {
-  padding-top: 3rem;
 }
 .__watch .row > div:first-child .__video {
   width: 100%;

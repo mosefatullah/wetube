@@ -2,11 +2,12 @@ import React, { useState, useEffect } from "react";
 import Navbar from "./components/Navbar";
 import Videobox from "./components/Videobox";
 import Video from "./components/Video";
+import Category from "./components/Category";
 import blank from "./blank.jpg";
 //import Linkify from "./components/Linkify";
 
-import { db } from "../utils/firebase";
-import { onValue, ref } from "@firebase/database";
+import { app } from "../utils/firebase";
+import { getDatabase, onValue, ref } from "@firebase/database";
 
 function Watch() {
  const v = new URLSearchParams(window.location.search).get("v");
@@ -27,6 +28,7 @@ function Watch() {
 
  const fetchFiredb = () => {
   try {
+   const db = getDatabase(app);
    const query = ref(db, "videos");
    return onValue(query, (snapshot) => {
     const data = snapshot.val();
@@ -138,6 +140,9 @@ function Watch() {
         >
          Show {btnDescription}
         </button>
+       </div>
+       <div className="__category-container mt-5">
+        <Category />
        </div>
        <div className="__other-videos">
         {videos.map((x, i) => {

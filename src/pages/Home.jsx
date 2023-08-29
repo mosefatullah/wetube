@@ -2,11 +2,12 @@ import React, { useState, useEffect } from "react";
 import Navbar from "./components/Navbar";
 import Sidebar from "./components/Sidebar";
 import Video from "./components/Video";
+import Category from "./components/Category";
 import NetError from "./NetError";
 import blank from "./blank.jpg";
 
-import { db } from "../utils/firebase";
-import { onValue, ref } from "@firebase/database";
+import { app } from "../utils/firebase";
+import { getDatabase, onValue, ref } from "@firebase/database";
 
 function Home() {
  const [videos, setVideos] = useState([]);
@@ -14,6 +15,7 @@ function Home() {
 
  const fetchFiredb = () => {
   try {
+   const db = getDatabase(app);
    const query = ref(db, "videos");
    return onValue(query, (snapshot) => {
     const data = snapshot.val();
@@ -43,6 +45,9 @@ function Home() {
       <Sidebar />
      </div>
      <div className="col-md-10">
+      <div className="__category-container">
+       <Category />
+      </div>
       <div className="__video-container">
        <div className="row row-gap-4">
         {videos.map((x, i) => {

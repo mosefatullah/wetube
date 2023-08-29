@@ -2,9 +2,11 @@ import React from "react";
 import logo from "./../../logo.png";
 import { Link } from "react-router-dom";
 import Sidebar from "../components/Sidebar";
+import Account from "../components/Account";
 
 function Navbar() {
  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+ const [isAccountCompoOpen, setIsAccountCompoOpen] = React.useState(false);
  return (
   <>
    <div className="__navbar">
@@ -66,7 +68,7 @@ function Navbar() {
       <button className="btn-round ms-3">
        <svg
         xmlns="http://www.w3.org/2000/svg"
-        enable-background="new 0 0 24 24"
+        enableBackground="new 0 0 24 24"
         height="18px"
         viewBox="0 0 24 24"
         width="18px"
@@ -99,26 +101,43 @@ function Navbar() {
         <path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2zm6-6v-5c0-3.07-1.63-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.64 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2zm-2 1H8v-6c0-2.48 1.51-4.5 4-4.5s4 2.02 4 4.5v6z" />
        </svg>
       </button>
-      <button className="btn-round">
-       <svg
-        xmlns="http://www.w3.org/2000/svg"
-        enable-background="new 0 0 24 24"
-        height="24px"
-        viewBox="0 0 24 24"
-        width="24px"
-        fill="#000000"
+      <div className="position-relative">
+       <button
+        className={
+         isAccountCompoOpen === true ? "btn-round active" : "btn-round"
+        }
+        onClick={() => {
+         setIsAccountCompoOpen(!isAccountCompoOpen);
+         if (document.querySelectorAll(".__account-menu")[0]) {
+          document
+           .querySelectorAll(".__account-menu")[0]
+           .classList.toggle("hide");
+         }
+        }}
        >
-        <g>
-         <rect fill="none" height="24" width="24" />
-        </g>
-        <g>
+        <svg
+         xmlns="http://www.w3.org/2000/svg"
+         enableBackground="new 0 0 24 24"
+         height="24px"
+         viewBox="0 0 24 24"
+         width="24px"
+         fill="#000000"
+        >
          <g>
-          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zM7.35 18.5C8.66 17.56 10.26 17 12 17s3.34.56 4.65 1.5c-1.31.94-2.91 1.5-4.65 1.5s-3.34-.56-4.65-1.5zm10.79-1.38C16.45 15.8 14.32 15 12 15s-4.45.8-6.14 2.12C4.7 15.73 4 13.95 4 12c0-4.42 3.58-8 8-8s8 3.58 8 8c0 1.95-.7 3.73-1.86 5.12z" />
-          <path d="M12 6c-1.93 0-3.5 1.57-3.5 3.5S10.07 13 12 13s3.5-1.57 3.5-3.5S13.93 6 12 6zm0 5c-.83 0-1.5-.67-1.5-1.5S11.17 8 12 8s1.5.67 1.5 1.5S12.83 11 12 11z" />
+          <rect fill="none" height="24" width="24" />
          </g>
-        </g>
-       </svg>
-      </button>
+         <g>
+          <g>
+           <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zM7.35 18.5C8.66 17.56 10.26 17 12 17s3.34.56 4.65 1.5c-1.31.94-2.91 1.5-4.65 1.5s-3.34-.56-4.65-1.5zm10.79-1.38C16.45 15.8 14.32 15 12 15s-4.45.8-6.14 2.12C4.7 15.73 4 13.95 4 12c0-4.42 3.58-8 8-8s8 3.58 8 8c0 1.95-.7 3.73-1.86 5.12z" />
+           <path d="M12 6c-1.93 0-3.5 1.57-3.5 3.5S10.07 13 12 13s3.5-1.57 3.5-3.5S13.93 6 12 6zm0 5c-.83 0-1.5-.67-1.5-1.5S11.17 8 12 8s1.5.67 1.5 1.5S12.83 11 12 11z" />
+          </g>
+         </g>
+        </svg>
+       </button>
+       <div className="__account-menu hide">
+        <Account />
+       </div>
+      </div>
      </div>
     </div>
    </div>
@@ -129,9 +148,7 @@ function Navbar() {
     id="menuCanvas"
    >
     <div className="offcanvas-header">
-     <h5 className="offcanvas-title">
-      Wetube
-     </h5>
+     <h5 className="offcanvas-title">Wetube</h5>
      <button
       className="btn btn-dark btn-sm"
       onClick={() => {
