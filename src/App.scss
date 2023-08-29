@@ -132,13 +132,13 @@ img::after {
    fill: $primary-text-color;
    margin-top: -0.2rem;
   }
-  img{
-    display: inline-block;
-    width: 33px;
-    height: 33px;
-    border-radius: 100rem;
-    object-fit: cover;
-    box-shadow: 0 0 5px 1px rgba(255,255,255,0.4);
+  img {
+   display: inline-block;
+   width: 33px;
+   height: 33px;
+   border-radius: 100rem;
+   object-fit: cover;
+   box-shadow: 0 0 5px 1px rgba(255, 255, 255, 0.4);
   }
   &:hover {
    background-color: rgba($primary-text-color, 0.1);
@@ -152,20 +152,28 @@ img::after {
  .__account-menu {
   position: absolute;
   right: 0;
-  height: 400px;
   width: 0px;
+  min-height: 400px;
   background-color: $secondary-color;
   border-radius: 0.8rem;
-  padding: 1rem;
+  padding: 1.5rem;
   z-index: 100000;
   font-size: 0.8rem;
-  overflow-y: scroll;
-
-  transition: all 0.1s ease-in-out, height 0.4s ease-in-out;
+  overflow: hidden;
+  transition: all 0.1s ease-in-out;
   opacity: 0;
   &.visible {
-    opacity: 1;
-    width: 300px;
+   opacity: 1;
+   width: 300px;
+  }
+  input{
+    margin: 0.5rem 0;
+    font-size: 0.8rem;
+    padding: 0.3rem 0.5rem;
+  }
+  button {
+    font-size: 0.8rem;
+    margin: 0.4rem 0;
   }
  }
 
