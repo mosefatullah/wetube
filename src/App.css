@@ -36,7 +36,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background-color: #0f0f0f;
   color: #fff;
-  user-select: none;
 }
 
 img {
@@ -124,6 +123,15 @@ img::after {
 }
 .__navbar .btn-round svg {
   fill: #fff;
+  margin-top: -0.2rem;
+}
+.__navbar .btn-round img {
+  display: inline-block;
+  width: 33px;
+  height: 33px;
+  border-radius: 100rem;
+  object-fit: cover;
+  box-shadow: 0 0 5px 1px rgba(255, 255, 255, 0.4);
 }
 .__navbar .btn-round:hover {
   background-color: rgba(255, 255, 255, 0.1);
@@ -134,17 +142,20 @@ img::after {
 .__navbar .__account-menu {
   position: absolute;
   right: 0;
-  width: 300px;
   height: 400px;
+  width: 0px;
   background-color: #212529;
   border-radius: 0.8rem;
   padding: 1rem;
   z-index: 100000;
   font-size: 0.8rem;
   overflow-y: scroll;
+  transition: all 0.1s ease-in-out, height 0.4s ease-in-out;
+  opacity: 0;
 }
-.__navbar .__account-menu.hide {
-  display: none;
+.__navbar .__account-menu.visible {
+  opacity: 1;
+  width: 300px;
 }
 .__navbar .loading-bar-container {
   position: fixed;

@@ -17,7 +17,7 @@ function Home() {
   try {
    const db = getDatabase(app);
    const query = ref(db, "videos");
-   return onValue(query, (snapshot) => {
+   onValue(query, (snapshot) => {
     const data = snapshot.val();
     if (snapshot.exists()) {
      setVideos(data);
