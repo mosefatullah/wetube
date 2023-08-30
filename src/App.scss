@@ -14,7 +14,7 @@ $primary-other-color: #3498db;
 
 ::-webkit-scrollbar {
  width: 7px;
- height: 7px;
+ height: 5px;
 }
 
 ::-webkit-scrollbar-track {
@@ -73,7 +73,7 @@ img::after {
  top: 0;
  left: 0;
  background-color: $primary-color;
- z-index: 1000;
+ z-index: 10000;
  .navbar {
   padding: 0.3rem 1rem;
   .navbar-brand {
@@ -92,6 +92,7 @@ img::after {
   }
   .input-group {
    max-width: 600px;
+   margin-right: 0.5rem;
    input {
     background-color: $primary-color;
     padding-left: 1rem;
@@ -118,8 +119,13 @@ img::after {
     padding: 0.5rem 0.8rem;
    }
   }
-  .menu button {
-   padding: 0.4rem 0.5rem;
+  .menu {
+   .btn-round {
+    padding: 0.5rem 0.6rem;
+   }
+   .btn-round#profile-image {
+    padding: 0.3rem 0.35rem;
+   }
   }
  }
  .btn-round {
@@ -138,7 +144,6 @@ img::after {
    height: 33px;
    border-radius: 100rem;
    object-fit: cover;
-   box-shadow: 0 0 5px 1px rgba(255, 255, 255, 0.4);
   }
   &:hover {
    background-color: rgba($primary-text-color, 0.1);
@@ -149,7 +154,8 @@ img::after {
   }
  }
 
- .__account-menu {
+ .__account-menu,
+ .__notification-menu {
   position: absolute;
   right: 0;
   width: 0px;
@@ -166,14 +172,21 @@ img::after {
    opacity: 1;
    width: 300px;
   }
-  input{
-    margin: 0.5rem 0;
-    font-size: 0.8rem;
-    padding: 0.3rem 0.5rem;
+  input {
+   margin: 0.5rem 0;
+   font-size: 0.8rem;
+   padding: 0.3rem 0.5rem;
   }
   button {
-    font-size: 0.8rem;
-    margin: 0.4rem 0;
+   font-size: 0.8rem;
+   margin: 0.4rem 0;
+  }
+ }
+
+ .__notification-menu {
+  &.visible {
+   opacity: 1;
+   width: 400px;
   }
  }
 
@@ -197,6 +210,17 @@ img::after {
    height: 2px;
    left: 100%;
   }
+ }
+
+ .layer-blur {
+  position: fixed;
+  top: 0px;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba($primary-color, 0.2);
+  backdrop-filter: blur(5px);
+  z-index: -1000;
  }
 }
 
@@ -340,9 +364,19 @@ img::after {
 }
 
 .__category-container {
+ position: relative;
  margin: 0.1rem 0;
  margin-bottom: 1rem;
  white-space: nowrap;
+ &::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 8%;
+  height: 100%;
+  background: linear-gradient(to right, transparent, $primary-color);
+ }
  .category {
   height: fit-content;
   width: fit-content;
@@ -353,6 +387,8 @@ img::after {
   border: 0;
   font-size: 0.8rem;
   margin: 0 0.5rem;
+  cursor: pointer;
+  user-select: none;
   svg {
    fill: $primary-text-color;
    margin-top: -0.2rem;
@@ -610,6 +646,16 @@ img::after {
 }
 
 @media screen and (max-width: 992px) {
+ .__navbar {
+  .navbar {
+   .input-group {
+    max-width: 300px;
+    input {
+     font-size: 0.8rem;
+    }
+   }
+  }
+ }
  .__watch {
   & > div > .row > div:first-child {
    order: 2;
@@ -658,7 +704,8 @@ img::after {
     }
    }
    .input-group {
-    max-width: 400px;
+    min-width: 300px;
+    margin-left: auto;
     input {
      font-size: 0.8rem;
     }

@@ -6,7 +6,7 @@ import History from "./pages/History";
 import Subscriptions from "./pages/Subscriptions";
 import WatchLater from "./pages/WatchLater";
 import Watch from "./pages/Watch";
-import Error from './pages/Error';
+import Error from "./pages/Error";
 
 function App() {
  return (

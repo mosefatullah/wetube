@@ -1,4 +1,5 @@
 import React from "react";
+import Alert from "./Alert";
 
 import { app } from "../../utils/firebase";
 import {
@@ -29,6 +30,7 @@ export default class Account extends React.Component {
    signInWithGithub: null,
    accountComponent: <></>,
    isLoggedInOrOutNow: props.onDataSent,
+   alert: props.onAlert,
   };
  }
 
@@ -84,6 +86,7 @@ export default class Account extends React.Component {
           .then(() => {
            this.state.isLoggedInOrOutNow(true);
            this.loggedOutDataShowing();
+           this.state.alert("User is logged out!");
           })
           .catch((error) => {
            console.log(error);
@@ -186,11 +189,10 @@ export default class Account extends React.Component {
   const auth = getAuth(app);
   const googleProvider = new GoogleAuthProvider();
   const githubProvider = new GithubAuthProvider();
-
+  this.setState({
+   accountComponent: this.loadingBar,
+  });
   onAuthStateChanged(auth, (user) => {
-   this.setState({
-    accountComponent: this.loadingBar,
-   });
    if (user) {
     this.storeAccountInfo(user);
     this.userDataShowing(user);
@@ -215,7 +217,7 @@ export default class Account extends React.Component {
      .catch((error) => {
       const errorCode = error.code;
       const errorMessage = error.message;
-      alert(errorCode + " : " + errorMessage);
+      console.log(errorCode + " : " + errorMessage);
       this.loggedOutDataShowing();
      });
    },
@@ -259,6 +261,10 @@ export default class Account extends React.Component {
  }
 
  render() {
-  return <div className="__account">{this.state.accountComponent}</div>;
+  return (
+   <>
+    <div className="__account">{this.state.accountComponent}</div>
+   </>
+  );
  }
 }

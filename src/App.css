@@ -8,7 +8,7 @@
 
 ::-webkit-scrollbar {
   width: 7px;
-  height: 7px;
+  height: 5px;
 }
 
 ::-webkit-scrollbar-track {
@@ -66,7 +66,7 @@ img::after {
   top: 0;
   left: 0;
   background-color: #0f0f0f;
-  z-index: 1000;
+  z-index: 10000;
 }
 .__navbar .navbar {
   padding: 0.3rem 1rem;
@@ -85,6 +85,7 @@ img::after {
 }
 .__navbar .navbar .input-group {
   max-width: 600px;
+  margin-right: 0.5rem;
 }
 .__navbar .navbar .input-group input {
   background-color: #0f0f0f;
@@ -111,8 +112,11 @@ img::after {
 .__navbar .navbar .input-group button:last-child {
   padding: 0.5rem 0.8rem;
 }
-.__navbar .navbar .menu button {
-  padding: 0.4rem 0.5rem;
+.__navbar .navbar .menu .btn-round {
+  padding: 0.5rem 0.6rem;
+}
+.__navbar .navbar .menu .btn-round#profile-image {
+  padding: 0.3rem 0.35rem;
 }
 .__navbar .btn-round {
   background-color: transparent;
@@ -131,7 +135,6 @@ img::after {
   height: 33px;
   border-radius: 100rem;
   object-fit: cover;
-  box-shadow: 0 0 5px 1px rgba(255, 255, 255, 0.4);
 }
 .__navbar .btn-round:hover {
   background-color: rgba(255, 255, 255, 0.1);
@@ -139,7 +142,8 @@ img::after {
 .__navbar .btn-round:active, .__navbar .btn-round.active {
   background-color: rgba(255, 255, 255, 0.15);
 }
-.__navbar .__account-menu {
+.__navbar .__account-menu,
+.__navbar .__notification-menu {
   position: absolute;
   right: 0;
   width: 0px;
@@ -153,18 +157,25 @@ img::after {
   transition: all 0.1s ease-in-out;
   opacity: 0;
 }
-.__navbar .__account-menu.visible {
+.__navbar .__account-menu.visible,
+.__navbar .__notification-menu.visible {
   opacity: 1;
   width: 300px;
 }
-.__navbar .__account-menu input {
+.__navbar .__account-menu input,
+.__navbar .__notification-menu input {
   margin: 0.5rem 0;
   font-size: 0.8rem;
   padding: 0.3rem 0.5rem;
 }
-.__navbar .__account-menu button {
+.__navbar .__account-menu button,
+.__navbar .__notification-menu button {
   font-size: 0.8rem;
   margin: 0.4rem 0;
+}
+.__navbar .__notification-menu.visible {
+  opacity: 1;
+  width: 400px;
 }
 .__navbar .loading-bar-container {
   position: fixed;
@@ -185,6 +196,16 @@ img::after {
     height: 2px;
     left: 100%;
   }
+}
+.__navbar .layer-blur {
+  position: fixed;
+  top: 0px;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(15, 15, 15, 0.2);
+  backdrop-filter: blur(5px);
+  z-index: -1000;
 }
 
 /*** __SIDEMENU ***/
@@ -311,9 +332,19 @@ img::after {
 }
 
 .__category-container {
+  position: relative;
   margin: 0.1rem 0;
   margin-bottom: 1rem;
   white-space: nowrap;
+}
+.__category-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 8%;
+  height: 100%;
+  background: linear-gradient(to right, transparent, #0f0f0f);
 }
 .__category-container .category {
   height: fit-content;
@@ -325,6 +356,8 @@ img::after {
   border: 0;
   font-size: 0.8rem;
   margin: 0 0.5rem;
+  cursor: pointer;
+  user-select: none;
 }
 .__category-container .category svg {
   fill: #fff;
@@ -568,6 +601,12 @@ img::after {
   }
 }
 @media screen and (max-width: 992px) {
+  .__navbar .navbar .input-group {
+    max-width: 300px;
+  }
+  .__navbar .navbar .input-group input {
+    font-size: 0.8rem;
+  }
   .__watch > div > .row > div:first-child {
     order: 2;
   }
@@ -609,7 +648,8 @@ img::after {
     margin-top: 0.1rem;
   }
   .__navbar .navbar .input-group {
-    max-width: 400px;
+    min-width: 300px;
+    margin-left: auto;
   }
   .__navbar .navbar .input-group input {
     font-size: 0.8rem;
