@@ -24,8 +24,6 @@ function Home() {
     } else {
      setError("No video available!");
     }
-   }).catch(() => {
-    setError();
    });
   } catch (error) {
    setError("Network error occurred.");

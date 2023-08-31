@@ -29,6 +29,7 @@ function Watch() {
  const [pub, setPub] = useState("No Date");
  //const [description, setDescription] = useState("No Description");
  const [views, setViews] = useState(0);
+ const [likes, setLikes] = useState(0);
 
  const [showDescription, setShowDescription] = useState(false);
  const [btnDescription, setBtnDescription] = useState("More");
@@ -85,7 +86,10 @@ function Watch() {
   const db = getDatabase(app);
   ////
   onValue(ref(db, "videos/" + v), (snapshot) => {
-   if (snapshot.exists()) setViews(snapshot.val().views || 0);
+   if (snapshot.exists()) {
+    setViews(snapshot.val().views || 0);
+    setLikes(snapshot.val().likesCount || 0);
+   }
   });
   //// set views of current user if not viewed
   onAuthStateChanged(getAuth(app), (user) => {
@@ -113,14 +117,22 @@ function Watch() {
  const toggleStar = () => {
   onAuthStateChanged(getAuth(app), (user) => {
    if (user) {
-    const dbRef = ref(getDatabase(app));
     const uid = user.uid;
     const updates = {};
-    updates[`videos/${v}/stars/${uid}`] = true;
-    updates[`videos/${v}/starCount`] = increment(1);
-    updates[`stars/${v}/${uid}`] = true;
-    updates[`stars/${v}/starCount`] = increment(1);
-    update(dbRef, updates);
+    // check if previously liked or not
+    onValue(ref(getDatabase(app), "likes/" + v + "/" + uid), (snapshot) => {
+     if (snapshot.exists()) {
+      updates[`videos/${v}/likes/${uid}`] = null;
+      updates[`videos/${v}/likesCount`] = increment(-1);
+      updates[`likes/${uid}/${v}`] = null;
+      update(getDatabase(app), updates);
+     } else {
+      updates[`videos/${v}/likes/${uid}`] = true;
+      updates[`videos/${v}/likesCount`] = increment(1);
+      updates[`likes/${uid}/${v}`] = true;
+      update(getDatabase(app), updates);
+     }
+    });
    }
   });
  };
@@ -133,7 +145,7 @@ function Watch() {
   fetchFiredb();
   viewCount();
   setHistory();
- });
+ }, []);
 
  if (error !== false) {
   return (
@@ -226,7 +238,7 @@ function Watch() {
             onClick={fetchFiredb}
            />
           );
-         } else{
+         } else {
           return false;
          }
         })}
@@ -240,6 +252,7 @@ function Watch() {
         channelName={channelName}
         channelThumb={channelThumb}
         video={video}
+        likes={likes}
         toggleStar={toggleStar}
        />
        <div className="__comments">
