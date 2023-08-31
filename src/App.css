@@ -58,6 +58,11 @@ img::after {
   margin: 0 !important;
 }
 
+.alert .btn-close:hover,
+.alert .btn-close:focus {
+  box-shadow: none !important;
+}
+
 /*** __NAVBAR ***/
 .__navbar {
   width: 100%;
@@ -142,6 +147,16 @@ img::after {
 .__navbar .btn-round:active, .__navbar .btn-round.active {
   background-color: rgba(255, 255, 255, 0.15);
 }
+.__navbar #notifNumber {
+  display: block;
+  width: 1.2rem;
+  height: 1.2rem;
+  font-size: 0.6rem;
+  padding-top: 0.3rem;
+  border-radius: 100rem;
+  margin-left: -1.2rem;
+  margin-top: 0.5rem;
+}
 .__navbar .__account-menu,
 .__navbar .__notification-menu {
   position: absolute;
@@ -150,7 +165,6 @@ img::after {
   min-height: 400px;
   background-color: #212529;
   border-radius: 0.8rem;
-  padding: 1.5rem;
   z-index: 100000;
   font-size: 0.8rem;
   overflow: hidden;
@@ -162,20 +176,66 @@ img::after {
   opacity: 1;
   width: 300px;
 }
-.__navbar .__account-menu input,
-.__navbar .__notification-menu input {
+.__navbar .__account-menu .spinner,
+.__navbar .__notification-menu .spinner {
+  margin-top: 1rem;
+}
+.__navbar .__account-menu > * > h5,
+.__navbar .__notification-menu > * > h5 {
+  margin: 0 !important;
+  padding: 1rem;
+  font-size: 0.9rem;
+  font-weight: 800;
+  color: #fff;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+.__navbar .__account-menu .__body,
+.__navbar .__notification-menu .__body {
+  width: 100%;
+  padding: 1rem;
+}
+.__navbar .__account-menu .__body input,
+.__navbar .__notification-menu .__body input {
   margin: 0.5rem 0;
   font-size: 0.8rem;
   padding: 0.3rem 0.5rem;
 }
-.__navbar .__account-menu button,
-.__navbar .__notification-menu button {
+.__navbar .__account-menu .__body button,
+.__navbar .__notification-menu .__body button {
   font-size: 0.8rem;
   margin: 0.4rem 0;
 }
 .__navbar .__notification-menu.visible {
   opacity: 1;
   width: 400px;
+}
+.__navbar .__notification-menu .__body {
+  padding: 0;
+}
+.__navbar .__notification-menu .__body .list-group {
+  max-height: 300px;
+  overflow-y: auto;
+  border-radius: 0;
+  user-select: none;
+}
+.__navbar .__notification-menu .__body .list-group .list-group-item {
+  padding: 0.8rem 0.8rem;
+  border: 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  background-color: transparent;
+}
+.__navbar .__notification-menu .__body .list-group .list-group-item:hover {
+  background-color: rgba(255, 255, 255, 0.05) !important;
+}
+.__navbar .__notification-menu .__body .list-group .list-group-item h6 {
+  font-size: 0.8rem;
+  font-weight: 800;
+  margin: 0;
+  padding-bottom: 0.2rem;
+}
+.__navbar .__notification-menu .__body .list-group .list-group-item p {
+  font-size: 0.7rem;
+  margin: 0;
 }
 .__navbar .loading-bar-container {
   position: fixed;

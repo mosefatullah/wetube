@@ -8,6 +8,7 @@ import Alert from "../components/Alert";
 
 import { app } from "../../utils/firebase";
 import { getAuth, onAuthStateChanged } from "@firebase/auth";
+import { getDatabase, onValue, ref, set } from "@firebase/database";
 
 function Navbar() {
  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
@@ -15,14 +16,38 @@ function Navbar() {
  const [isNotifCompoOpen, setIsNotifCompoOpen] = React.useState(false);
  const [profileImage, setProfileImage] = React.useState(null);
  const [alerting, setAlerting] = React.useState("");
+ const [alertMode, setAlertMode] = React.useState("");
 
  useEffect(() => {
   const auth = getAuth(app);
   onAuthStateChanged(auth, (user) => {
    if (user) {
     setProfileImage(user.photoURL);
+    // check how much notifications are there
+    if (document.getElementById("notifNumber")) {
+     const db = getDatabase(app);
+     const notifRef = ref(db, `notifications/${user.uid}`);
+     onValue(notifRef, (snapshot) => {
+      const data = snapshot.val();
+      if (data) {
+       const notifNumber = Object.keys(data).length;
+       if (notifNumber > 0) {
+        document.getElementById("notifNumber").innerHTML = notifNumber;
+        document.getElementById("notifNumber").classList.remove("d-none");
+       } else {
+        document.getElementById("notifNumber").innerHTML = "";
+        document.getElementById("notifNumber").classList.add("d-none");
+       }
+      } else {
+       document.getElementById("notifNumber").innerHTML = "";
+       document.getElementById("notifNumber").classList.add("d-none");
+      }
+     });
+    }
    } else {
     setProfileImage(null);
+    document.getElementById("notifNumber").innerHTML = "";
+    document.getElementById("notifNumber").classList.add("d-none");
    }
   });
  }, []);
@@ -33,14 +58,15 @@ function Navbar() {
    const user = auth.currentUser;
    setIsAccountCompoOpen(false);
    if (user.metadata.creationTime === user.metadata.lastSignInTime) {
-    alert("Welcome to WeTube!");
+    setAlerting("Welcome to WeTube!");
    }
   }
  };
 
- const handleAlert = (a) => {
-  if (a !== "" && a != null && typeof a !== "undefined") {
-   setAlerting(a);
+ const handleAlert = (b, a) => {
+  if (b !== "" && b !== null && b !== undefined && b !== false && b) {
+   setAlerting(b);
+   if (a) setAlertMode(a);
   }
  };
 
@@ -149,6 +175,9 @@ function Navbar() {
          <path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2zm6-6v-5c0-3.07-1.63-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.64 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2zm-2 1H8v-6c0-2.48 1.51-4.5 4-4.5s4 2.02 4 4.5v6z" />
         </svg>
        </button>
+       <sup className="badge bg-danger text-light d-none" id="notifNumber">
+        1
+       </sup>
        <div className="position-relative">
         <button
          className={
@@ -225,7 +254,13 @@ function Navbar() {
     </div>
     <div className="offcanvas-body">{<Sidebar />}</div>
    </div>
-   {alerting === "" ? "" : <Alert bg="danger">{alerting}</Alert>}
+   {alerting === "" ? (
+    ""
+   ) : (
+    <Alert bg={alertMode} onAlert={handleAlert}>
+     {alerting}
+    </Alert>
+   )}
   </>
  );
 }

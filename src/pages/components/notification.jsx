@@ -28,8 +28,10 @@ export default class Notification extends React.Component {
      const notif = data[key];
      const notifList = (
       <li className="list-group-item  bg-transparent text-white" key={key}>
-       <h6>{notif.title || "Title"}</h6>
-       <p>{notif.content || "Content"}</p>
+       <h6>{notif.title || "Error Occured!"}</h6>
+       <p>
+        {notif.content || "Please refresh the page or Wait for some moment."}
+       </p>
       </li>
      );
      notifLists.push(notifList);
@@ -55,7 +57,7 @@ export default class Notification extends React.Component {
     this.revealNotifData(user);
    } else {
     this.setState({
-     notifLists: [],
+     notifLists: <p className="text-center pt-4">No Notifications</p>,
     });
    }
   });
@@ -65,12 +67,13 @@ export default class Notification extends React.Component {
   return (
    <div className="__notification">
     <h5>Notifications</h5>
-    <hr />
-    <ul class="list-group">
-     {typeof this.state.notifLists === "array" && this.state.notifLists !== []
-      ? this.state.notifLists.map((e) => e)
-      : this.state.notifLists}
-    </ul>
+    <div className="__body">
+     <ul class="list-group">
+      {typeof this.state.notifLists === "array" && this.state.notifLists !== []
+       ? this.state.notifLists.map((e) => e)
+       : this.state.notifLists}
+     </ul>
+    </div>
    </div>
   );
  }
