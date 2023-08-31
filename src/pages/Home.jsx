@@ -10,7 +10,7 @@ import { app } from "../utils/firebase";
 import { getDatabase, onValue, ref } from "@firebase/database";
 
 function Home() {
- const [videos, setVideos] = useState([]);
+ const [videos, setVideos] = useState([{}, {}, {}, {}, {}, {}, {}, {}, {}, {}]);
  const [error, setError] = useState(false);
 
  const fetchFiredb = () => {
@@ -24,6 +24,8 @@ function Home() {
     } else {
      setError("No video available!");
     }
+   }).catch(() => {
+    setError();
    });
   } catch (error) {
    setError("Network error occurred.");
@@ -55,7 +57,7 @@ function Home() {
           return (
            <Video
             id={i}
-            name={x.title || "Please Wait or Refresh the Page!"}
+            name={x.title || ""}
             thumb={
              "https://firebasestorage.googleapis.com/v0/b/wetube-dev.appspot.com/o/photos%2Fvideo%2F" +
               x.thumbnail +

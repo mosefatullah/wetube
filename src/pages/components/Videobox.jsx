@@ -1,6 +1,14 @@
 import React, { useState, useRef, useEffect } from "react";
 
-function Videobox({ id, name, thumb, channelName, channelThumb, video }) {
+function Videobox({
+ id,
+ name,
+ thumb,
+ channelName,
+ channelThumb,
+ video,
+ toggleStar,
+}) {
  const [isLoading, setIsLoading] = useState(true);
  const [isPlaying, setIsPlaying] = useState(true);
  const videoRef = useRef(null);
@@ -121,7 +129,7 @@ function Videobox({ id, name, thumb, channelName, channelThumb, video }) {
      <div className="col-12 col-md-6">
       <div className="all">
        <div className="btn-group">
-        <button className="btn like">
+        <button className="btn like" onClick={toggleStar}>
          <svg
           xmlns="http://www.w3.org/2000/svg"
           height="18"

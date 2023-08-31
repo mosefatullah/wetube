@@ -89,6 +89,9 @@ export default class Account extends React.Component {
     }).catch((error) => {
      console.error("Error saving data: ", error);
     });
+    set(ref(db, "history/" + user.uid), {}).catch((error) => {
+     console.error("Error saving data: ", error);
+    });
    }
    set(refs, data).catch((error) => {
     console.error("Error saving data: ", error);

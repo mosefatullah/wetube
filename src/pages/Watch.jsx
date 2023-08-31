@@ -7,7 +7,15 @@ import blank from "./blank.jpg";
 //import Linkify from "./components/Linkify";
 
 import { app } from "../utils/firebase";
-import { getDatabase, onValue, ref } from "@firebase/database";
+import { getAuth, onAuthStateChanged } from "@firebase/auth";
+import {
+ getDatabase,
+ onValue,
+ ref,
+ increment,
+ update,
+ set,
+} from "@firebase/database";
 
 function Watch() {
  const v = new URLSearchParams(window.location.search).get("v");
@@ -20,6 +28,7 @@ function Watch() {
  const [thumb, setThumb] = useState("./blank.jpg");
  const [pub, setPub] = useState("No Date");
  //const [description, setDescription] = useState("No Description");
+ const [views, setViews] = useState(0);
 
  const [showDescription, setShowDescription] = useState(false);
  const [btnDescription, setBtnDescription] = useState("More");
@@ -71,13 +80,60 @@ function Watch() {
    setError("Network error occurred.");
   }
  };
+
+ const viewCount = () => {
+  const db = getDatabase(app);
+  ////
+  onValue(ref(db, "videos/" + v), (snapshot) => {
+   if (snapshot.exists()) setViews(snapshot.val().views || 0);
+  });
+  //// set views of current user if not viewed
+  onAuthStateChanged(getAuth(app), (user) => {
+   if (user) {
+   }
+  });
+ };
+
+ const setHistory = () => {
+  onAuthStateChanged(getAuth(app), (user) => {
+   if (user) {
+    const db = getDatabase(app);
+    const data = true;
+    set(ref(db, "history/" + user.uid + "/" + v), data)
+     .then(() => {
+      console.log("History updated!");
+     })
+     .catch((error) => {
+      console.error(error);
+     });
+   }
+  });
+ };
+
+ const toggleStar = () => {
+  onAuthStateChanged(getAuth(app), (user) => {
+   if (user) {
+    const dbRef = ref(getDatabase(app));
+    const uid = user.uid;
+    const updates = {};
+    updates[`videos/${v}/stars/${uid}`] = true;
+    updates[`videos/${v}/starCount`] = increment(1);
+    updates[`stars/${v}/${uid}`] = true;
+    updates[`stars/${v}/starCount`] = increment(1);
+    update(dbRef, updates);
+   }
+  });
+ };
+
  useEffect(() => {
   window.scrollTo({
    top: 0,
    behavior: "smooth",
   });
   fetchFiredb();
- }, [v]);
+  viewCount();
+  setHistory();
+ });
 
  if (error !== false) {
   return (
@@ -115,7 +171,9 @@ function Watch() {
       <div className="col-lg-4">
        <div className="card card-body bg-dark">
         <h2>{title}</h2>
-        <h3>0 views - {pub}</h3>
+        <h3>
+         {views} views - {pub}
+        </h3>
         <hr />
         <p>
          Description
@@ -168,6 +226,8 @@ function Watch() {
             onClick={fetchFiredb}
            />
           );
+         } else{
+          return false;
          }
         })}
        </div>
@@ -180,6 +240,7 @@ function Watch() {
         channelName={channelName}
         channelThumb={channelThumb}
         video={video}
+        toggleStar={toggleStar}
        />
        <div className="__comments">
         <div className="d-flex">

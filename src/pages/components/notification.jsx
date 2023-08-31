@@ -68,7 +68,7 @@ export default class Notification extends React.Component {
    <div className="__notification">
     <h5>Notifications</h5>
     <div className="__body">
-     <ul class="list-group">
+     <ul className="list-group">
       {typeof this.state.notifLists === "array" && this.state.notifLists !== []
        ? this.state.notifLists.map((e) => e)
        : this.state.notifLists}

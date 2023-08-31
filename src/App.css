@@ -178,7 +178,7 @@ img::after {
 }
 .__navbar .__account-menu .spinner,
 .__navbar .__notification-menu .spinner {
-  margin-top: 1rem;
+  margin-top: 3rem;
 }
 .__navbar .__account-menu > * > h5,
 .__navbar .__notification-menu > * > h5 {
