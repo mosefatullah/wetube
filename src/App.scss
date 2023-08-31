@@ -555,6 +555,7 @@ img::after {
       }
       &.active {
        background-color: rgba($primary-other-color, 0.2);
+       color: $primary-other-color;
        svg {
         fill: $primary-other-color;
        }

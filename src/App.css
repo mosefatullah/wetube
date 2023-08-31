@@ -526,6 +526,7 @@ img::after {
 }
 .__watch .videobox .row > div .all .btn.active {
   background-color: rgba(52, 152, 219, 0.2);
+  color: #3498db;
 }
 .__watch .videobox .row > div .all .btn.active svg {
   fill: #3498db;

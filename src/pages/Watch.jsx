@@ -29,7 +29,7 @@ function Watch() {
  const [pub, setPub] = useState("No Date");
  //const [description, setDescription] = useState("No Description");
  const [views, setViews] = useState(0);
- const [likes, setLikes] = useState(0);
+ const [isLiked, setIsLiked] = useState(false);
 
  const [showDescription, setShowDescription] = useState(false);
  const [btnDescription, setBtnDescription] = useState("More");
@@ -84,16 +84,17 @@ function Watch() {
 
  const viewCount = () => {
   const db = getDatabase(app);
+  const uid = getAuth(app).currentUser.uid;
   ////
-  onValue(ref(db, "videos/" + v), (snapshot) => {
+  onValue(ref(db, `videos/${v}`), (snapshot) => {
    if (snapshot.exists()) {
     setViews(snapshot.val().views || 0);
-    setLikes(snapshot.val().likesCount || 0);
    }
   });
-  //// set views of current user if not viewed
-  onAuthStateChanged(getAuth(app), (user) => {
-   if (user) {
+  ///
+  onValue(ref(db, `likes/${uid}/${v}`), (snapshot) => {
+   if (snapshot.exists()) {
+    setIsLiked(snapshot.val());
    }
   });
  };
@@ -102,39 +103,18 @@ function Watch() {
   onAuthStateChanged(getAuth(app), (user) => {
    if (user) {
     const db = getDatabase(app);
-    const data = true;
-    set(ref(db, "history/" + user.uid + "/" + v), data)
-     .then(() => {
-      console.log("History updated!");
-     })
-     .catch((error) => {
-      console.error(error);
-     });
+    set(ref(db, "history/" + user.uid + "/" + v), true);
    }
   });
  };
 
- const toggleStar = () => {
-  onAuthStateChanged(getAuth(app), (user) => {
-   if (user) {
-    const uid = user.uid;
-    const updates = {};
-    // check if previously liked or not
-    onValue(ref(getDatabase(app), "likes/" + v + "/" + uid), (snapshot) => {
-     if (snapshot.exists()) {
-      updates[`videos/${v}/likes/${uid}`] = null;
-      updates[`videos/${v}/likesCount`] = increment(-1);
-      updates[`likes/${uid}/${v}`] = null;
-      update(getDatabase(app), updates);
-     } else {
-      updates[`videos/${v}/likes/${uid}`] = true;
-      updates[`videos/${v}/likesCount`] = increment(1);
-      updates[`likes/${uid}/${v}`] = true;
-      update(getDatabase(app), updates);
-     }
-    });
-   }
-  });
+ const onLike = () => {
+  setIsLiked(!isLiked);
+  const uid = getAuth(app).currentUser.uid;
+  const db = getDatabase(app);
+  (async () => {
+   await set(ref(db, `likes/${uid}/${v}`), !isLiked);
+  })();
  };
 
  useEffect(() => {
@@ -143,8 +123,8 @@ function Watch() {
    behavior: "smooth",
   });
   fetchFiredb();
-  viewCount();
   setHistory();
+  viewCount();
  }, []);
 
  if (error !== false) {
@@ -252,8 +232,8 @@ function Watch() {
         channelName={channelName}
         channelThumb={channelThumb}
         video={video}
-        likes={likes}
-        toggleStar={toggleStar}
+        onLike={onLike}
+        isLiked={isLiked}
        />
        <div className="__comments">
         <div className="d-flex">
