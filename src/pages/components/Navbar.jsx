@@ -31,16 +31,18 @@ function Navbar() {
       const data = snapshot.val();
       if (data) {
        const notifNumber = Object.keys(data).length;
-       if (notifNumber > 0) {
-        document.getElementById("notifNumber").innerHTML = notifNumber;
-        document.getElementById("notifNumber").classList.remove("d-none");
+       if (document.getElementById("notifNumber")) {
+        if (notifNumber > 0) {
+         document.getElementById("notifNumber").innerHTML = notifNumber;
+         document.getElementById("notifNumber").classList.remove("d-none");
+        } else {
+         document.getElementById("notifNumber").innerHTML = "";
+         document.getElementById("notifNumber").classList.add("d-none");
+        }
        } else {
         document.getElementById("notifNumber").innerHTML = "";
         document.getElementById("notifNumber").classList.add("d-none");
        }
-      } else {
-       document.getElementById("notifNumber").innerHTML = "";
-       document.getElementById("notifNumber").classList.add("d-none");
       }
      });
     }

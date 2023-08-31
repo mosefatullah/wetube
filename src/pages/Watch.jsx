@@ -12,9 +12,9 @@ import {
  getDatabase,
  onValue,
  ref,
- increment,
- update,
  set,
+ update,
+ increment,
 } from "@firebase/database";
 
 function Watch() {
@@ -84,19 +84,33 @@ function Watch() {
 
  const viewCount = () => {
   const db = getDatabase(app);
-  const uid = getAuth(app).currentUser.uid;
   ////
-  onValue(ref(db, `videos/${v}`), (snapshot) => {
-   if (snapshot.exists()) {
-    setViews(snapshot.val().views || 0);
-   }
-  });
-  ///
-  onValue(ref(db, `likes/${uid}/${v}`), (snapshot) => {
-   if (snapshot.exists()) {
-    setIsLiked(snapshot.val());
-   }
-  });
+  if (getAuth(app).currentUser) {
+   const uid = getAuth(app).currentUser.uid;
+   const dbRef = ref(getDatabase(app));
+   onValue(ref(db, `videos/${v}`), (snapshot) => {
+    if (snapshot.exists()) {
+     setViews(snapshot.val().views || 0);
+    }
+   });
+   ///
+   onValue(ref(db, `likes/${uid}/${v}`), (snapshot) => {
+    if (snapshot.exists()) {
+     setIsLiked(snapshot.val() || false);
+    }
+   });
+   onValue(ref(db, `videos/${v}`), (snapshot) => {
+    if (snapshot.exists()) {
+     setViews(snapshot.val().views || 0);
+    }
+   });
+   (async () => {
+    const updates = {};
+    updates[`videos/${v}/viewers/${uid}`] = true;
+    updates[`videos/${v}/views`] = increment(1);
+    update(dbRef, updates);
+   })();
+  }
  };
 
  const setHistory = () => {
@@ -111,10 +125,12 @@ function Watch() {
  const onLike = () => {
   setIsLiked(!isLiked);
   const uid = getAuth(app).currentUser.uid;
-  const db = getDatabase(app);
-  (async () => {
-   await set(ref(db, `likes/${uid}/${v}`), !isLiked);
-  })();
+  if (uid) {
+   const db = getDatabase(app);
+   (async () => {
+    await set(ref(db, `likes/${uid}/${v}`), !isLiked);
+   })();
+  }
  };
 
  useEffect(() => {
@@ -124,8 +140,11 @@ function Watch() {
   });
   fetchFiredb();
   setHistory();
+ }, [v]);
+
+ useEffect(() => {
   viewCount();
- }, []);
+ }, [video]);
 
  if (error !== false) {
   return (

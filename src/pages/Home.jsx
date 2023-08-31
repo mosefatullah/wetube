@@ -10,7 +10,7 @@ import { app } from "../utils/firebase";
 import { getDatabase, onValue, ref } from "@firebase/database";
 
 function Home() {
- const [videos, setVideos] = useState([{}, {}, {}, {}, {}, {}, {}, {}, {}, {}]);
+ const [videos, setVideos] = useState([]);
  const [error, setError] = useState(false);
 
  const fetchFiredb = () => {
