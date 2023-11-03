@@ -14,9 +14,9 @@ function Video(props) {
    }}
   ></Paper>
  );
- const inputDateString = props.pub;
+ const inputDateString = props.publicationDate;
  let ago = "";
- if (props.pub) {
+ if (inputDateString) {
   const actualDateAgo = new Date(inputDateString);
   const today = new Date();
   const diffTime = Math.abs(today - actualDateAgo);
@@ -36,20 +36,20 @@ function Video(props) {
  }
  return (
   <div className="__video">
-   <Link to={props.id && "/watch?v=" + props.id}>
-   <div className="video" onClick={props.onClick || null}>
-    <div className="thumbnail">
-     <img src={props.thumb || blank} />
-     <span>{props.duration}</span>
-    </div>
+   <Link to={props.id && "/watch?i=" + props.id}>
+    <div className="video" onClick={() => {}}>
+     <div className="thumbnail">
+      <img src={"https://firebasestorage.googleapis.com/v0/b/wetube-dev.appspot.com/o/photos%2Fvideo%2F"+props.thumbnail+"?alt=media" || blank} />
+      <span>{props.duration}</span>
+     </div>
      <div className="info">
-      <p>{props.name || <Placeholder />}</p>
+      <p>{props.title || <Placeholder />}</p>
       <div style={{ display: "flex" }}>
-       <img src={props.channelThumb || blank} />
+       <img src={"https://firebasestorage.googleapis.com/v0/b/wetube-dev.appspot.com/o/photos%2Fprofile%2F"+props.channelThumbnail+"?alt=media" || blank} />
        <div className="details">
-        <span>{props.channelName || ""}</span>
-        <br />
         <span>{ago || ""}</span>
+        <br />
+        <span>{props.channelName || ""}</span>
        </div>
        <p
         className="vws"
@@ -60,7 +60,7 @@ function Video(props) {
        </p>
       </div>
      </div>
-   </div>
+    </div>
    </Link>
   </div>
  );

@@ -349,11 +349,6 @@ img::after {
  }
 }
 /* __HOME */
-.__home {
- .__video-container {
- }
-}
-
 .__video {
  a {
   width: 100%;
@@ -408,13 +403,14 @@ img::after {
     padding-top: 0.2rem;
     span {
      color: rgba($primary-text-color, 0.5);
-     padding: 0 0.5rem;
+     padding: 0.1rem 0.5rem;
     }
     span:first-child {
-     font-size: 0.78rem;
+     font-size: 0.68rem;
+     opacity: 0.8;
     }
     span:last-child {
-     font-size: 0.68rem;
+     font-size: 0.78rem;
     }
    }
   }
@@ -446,8 +442,7 @@ img::after {
   background: linear-gradient(to right, transparent, $primary-color);
  }
  .category {
-  height: fit-content;
-  width: fit-content;
+  width: auto;
   padding: 0.3rem 0.8rem;
   background-color: rgba($primary-text-color, 0.1);
   color: $primary-text-color;

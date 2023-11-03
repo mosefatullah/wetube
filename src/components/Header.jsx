@@ -87,7 +87,7 @@ function Header() {
      >
       <MenuIcon />
      </IconButton>
-     <Link to="/" style={{ display: "flex", alignItems: "center" }}>
+     <Link to="/" style={{ display: "flex", alignItems: "center", marginRight: "0.5rem" }}>
       <img
        src={logo}
        alt="Logo"

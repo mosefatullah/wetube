@@ -385,13 +385,14 @@ img::after {
 }
 .__video .video .info .details span {
   color: rgba(255, 255, 255, 0.5);
-  padding: 0 0.5rem;
+  padding: 0.1rem 0.5rem;
 }
 .__video .video .info .details span:first-child {
-  font-size: 0.78rem;
+  font-size: 0.68rem;
+  opacity: 0.8;
 }
 .__video .video .info .details span:last-child {
-  font-size: 0.68rem;
+  font-size: 0.78rem;
 }
 .__video .video:hover {
   opacity: 0.8;
@@ -420,8 +421,7 @@ img::after {
   background: linear-gradient(to right, transparent, #0f0f0f);
 }
 .__category-container .category {
-  height: fit-content;
-  width: fit-content;
+  width: auto;
   padding: 0.3rem 0.8rem;
   background-color: rgba(255, 255, 255, 0.1);
   color: #fff;

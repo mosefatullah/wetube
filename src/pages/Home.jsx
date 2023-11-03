@@ -1,19 +1,23 @@
 import React from "react";
 
-import { Grid, Paper, Divider, Button } from "@mui/material";
-import { Theme } from "../services/theme";
-import { alpha } from "@mui/material/styles";
-import {
- Home as HomeIcon,
- AccessTimeFilled,
- FeaturedPlayList,
- Subscriptions,
-} from "@mui/icons-material";
-
+import { Grid, Button } from "@mui/material";
 import Video from "../components/Video";
-import { Link } from "react-router-dom";
+import Sidebar from "./../components/Sidebar";
+
+import getvideos from "../services/getvideos";
 
 function Home() {
+ const [videos, setVideos] = React.useState([]);
+ React.useEffect(() => {
+  getvideos(
+   (data) => {
+    setVideos(data);
+   },
+   (err) => {
+    alert(err);
+   }
+  );
+ }, []);
  return (
   <>
    <Grid container spacing={3}>
@@ -24,55 +28,7 @@ function Home() {
       maxWidth: "250px",
      }}
     >
-     <Paper
-      className="__sidemenu"
-      sx={{
-       minHeight: "90vh",
-       display: {
-        xs: "none",
-        lg: "block",
-       },
-       background: "transparent",
-      }}
-     >
-      <Link to="/" className="active">
-       <Button>
-        <span>
-         <HomeIcon />
-        </span>
-        Home
-       </Button>
-      </Link>
-      <Divider
-       style={{
-        margin: "1rem 0",
-       }}
-      />
-      <Link to="/account?tab=subscriptions">
-       <Button>
-        <span>
-         <Subscriptions />
-        </span>
-        Subscriptions
-       </Button>
-      </Link>
-      <Link to="/account?tab=history">
-       <Button>
-        <span>
-         <AccessTimeFilled />
-        </span>
-        History
-       </Button>
-      </Link>
-      <Link to="/account?playlists">
-       <Button>
-        <span>
-         <FeaturedPlayList />
-        </span>
-        Playlists
-       </Button>
-      </Link>
-     </Paper>
+     <Sidebar active="0" />
     </Grid>
     <Grid item xs={12} lg={10}>
      <div className="__category-container">
@@ -102,27 +58,13 @@ function Home() {
         },
        }}
       >
-       <Grid item xs={11} sm={6} md={4} xl={3} maxWidth="500px">
-        <Video />
-       </Grid>
-       <Grid item xs={11} sm={6} md={4} xl={3} maxWidth="500px">
-        <Video />
-       </Grid>
-       <Grid item xs={11} sm={6} md={4} xl={3} maxWidth="500px">
-        <Video />
-       </Grid>
-       <Grid item xs={11} sm={6} md={4} xl={3} maxWidth="500px">
-        <Video />
-       </Grid>
-       <Grid item xs={11} sm={6} md={4} xl={3} maxWidth="500px">
-        <Video />
-       </Grid>
-       <Grid item xs={11} sm={6} md={4} xl={3} maxWidth="500px">
-        <Video />
-       </Grid>
-       <Grid item xs={11} sm={6} md={4} xl={3} maxWidth="500px">
-        <Video />
-       </Grid>
+       {videos.map((v) => {
+        return (
+         <Grid item xs={11} sm={6} md={4} xl={3} maxWidth="500px">
+          <Video {...v} />
+         </Grid>
+        );
+       })}
       </Grid>
      </div>
     </Grid>

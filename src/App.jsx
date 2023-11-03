@@ -7,7 +7,7 @@ import { CssBaseline } from "@mui/material";
 
 import Header from "./components/Header";
 import Home from "./pages/Home";
-import Account from "./pages/Account";
+import Channel from "./pages/Channel";
 import Watch from "./pages/Watch";
 import NotFound from "./pages/NotFound";
 
@@ -21,7 +21,7 @@ function App() {
       <Header />
       <Routes>
        <Route path="/" element={<Home />} />
-       <Route path="/account" element={<Account />} />
+       <Route path="/channel" element={<Channel />} />
        <Route path="/watch" element={<Watch />} />
        <Route path="/*" element={<NotFound />} />
       </Routes>
