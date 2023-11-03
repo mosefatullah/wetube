@@ -300,6 +300,7 @@ img::after {
   display: flex;
   align-items: center;
   justify-content: start;
+  text-transform: capitalize;
   width: 100%;
   padding: 0.35rem 0.9rem;
   background-color: transparent;
@@ -442,8 +443,9 @@ img::after {
   background: linear-gradient(to right, transparent, $primary-color);
  }
  .category {
-  width: auto;
-  padding: 0.3rem 0.8rem;
+  display: inline-block;
+  min-width: fit-content;
+  padding: 0.2rem 0.8rem;
   background-color: rgba($primary-text-color, 0.1);
   color: $primary-text-color;
   border-radius: 0.8rem;
@@ -503,6 +505,7 @@ img::after {
    }
   }
   .row {
+   width: 100%;
    padding: 2rem 1rem;
    border-bottom-left-radius: 0.6rem;
    border-bottom-right-radius: 0.6rem;
@@ -640,6 +643,7 @@ img::after {
  display: flex;
  align-items: center;
  gap: 1rem;
+ z-index: 999;color: #031927;
  .play-pause-button,
  .fullscreen-button {
   display: flex;
@@ -651,18 +655,10 @@ img::after {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 60px;
-  height: 60px;
+  width: 40px;
+  height: 40px;
   background-color: $primary-other-color;
-  cursor: pointer;
-  border-radius: 50%;
-  user-select: none;
-  svg {
-   fill: $primary-text-color;
-  }
-  &:active {
-   background-color: rgba($primary-other-color, 0.8);
-  }
+  border-radius: 100rem;
  }
 }
 

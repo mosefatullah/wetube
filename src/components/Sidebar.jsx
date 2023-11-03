@@ -34,7 +34,7 @@ function Sidebar({active}) {
      margin: "1rem 0",
     }}
    />
-   <Link to="/channel?tab=subscriptions" className={active == 1 && "active"}>
+   <Link to="/account?tab=subscriptions" className={active == 1 && "active"}>
     <Button>
      <span>
       <Subscriptions />
@@ -42,7 +42,7 @@ function Sidebar({active}) {
      Subscriptions
     </Button>
    </Link>
-   <Link to="/channel?tab=history" className={active == 2 && "active"}>
+   <Link to="/account?tab=history" className={active == 2 && "active"}>
     <Button>
      <span>
       <AccessTimeFilled />
@@ -50,7 +50,7 @@ function Sidebar({active}) {
      History
     </Button>
    </Link>
-   <Link to="/channel?tab=playlists" className={active == 3 && "active"}>
+   <Link to="/account?tab=playlists" className={active == 3 && "active"}>
     <Button>
      <span>
       <FeaturedPlayList />

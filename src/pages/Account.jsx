@@ -3,7 +3,7 @@ import Sidebar from "../components/Sidebar";
 import { Grid } from "@mui/material";
 import { useLocation } from "react-router-dom";
 
-function Channel() {
+function Account() {
  const [tab, setTab] = React.useState(null);
 
  let { search } = useLocation();
@@ -38,4 +38,4 @@ function Channel() {
  );
 }
 
-export default Channel;
+export default Account;

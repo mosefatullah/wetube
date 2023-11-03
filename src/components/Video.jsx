@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import blank from "../assets/images/blank.jpg";
-import { Paper, ButtonBase } from "@mui/material";
+import { Paper } from "@mui/material";
 
 function Video(props) {
  const Placeholder = () => (
@@ -37,7 +37,7 @@ function Video(props) {
  return (
   <div className="__video">
    <Link to={props.id && "/watch?i=" + props.id}>
-    <div className="video" onClick={() => {}}>
+    <div className="video">
      <div className="thumbnail">
       <img src={"https://firebasestorage.googleapis.com/v0/b/wetube-dev.appspot.com/o/photos%2Fvideo%2F"+props.thumbnail+"?alt=media" || blank} />
       <span>{props.duration}</span>

@@ -1,15 +1,16 @@
 import React from "react";
 
-import { Grid, Button } from "@mui/material";
+import { Grid } from "@mui/material";
 import Video from "../components/Video";
 import Sidebar from "./../components/Sidebar";
-
-import getvideos from "../services/getvideos";
+import Category from "../components/Category";
+import getVideo from "../services/getvideo";
 
 function Home() {
  const [videos, setVideos] = React.useState([]);
  React.useEffect(() => {
-  getvideos(
+  getVideo(
+   "all",
    (data) => {
     setVideos(data);
    },
@@ -32,19 +33,7 @@ function Home() {
     </Grid>
     <Grid item xs={12} lg={10}>
      <div className="__category-container">
-      <div style={{ display: "flex", overflow: "hidden", overflowX: "scroll" }}>
-       <Button className="category active">All</Button>
-       <Button className="category">Music</Button>
-       <Button className="category">Gaming</Button>
-       <Button className="category">Movies</Button>
-       <Button className="category">News</Button>
-       <Button className="category">Live</Button>
-       <Button className="category">Fashion & Beauty</Button>
-       <Button className="category">Learning</Button>
-       <Button className="category">Sports</Button>
-       <Button className="category">360° Video</Button>
-       <Button className="category">Browse Channels</Button>
-      </div>
+      <Category />
      </div>
      <div className="__videos-container">
       <Grid
