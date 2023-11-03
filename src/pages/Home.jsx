@@ -1,84 +1,132 @@
-import React, { useState, useEffect } from "react";
-import Navbar from "./components/Navbar";
-import Sidebar from "./components/Sidebar";
-import Video from "./components/Video";
-import Category from "./components/Category";
-import NetError from "./NetError";
-import blank from "./blank.jpg";
+import React from "react";
 
-import { app } from "../utils/firebase";
-import { getDatabase, onValue, ref } from "@firebase/database";
+import { Grid, Paper, Divider, Button } from "@mui/material";
+import { Theme } from "../services/theme";
+import { alpha } from "@mui/material/styles";
+import {
+ Home as HomeIcon,
+ AccessTimeFilled,
+ FeaturedPlayList,
+ Subscriptions,
+} from "@mui/icons-material";
+
+import Video from "../components/Video";
+import { Link } from "react-router-dom";
 
 function Home() {
- const [videos, setVideos] = useState([]);
- const [error, setError] = useState(false);
-
- const fetchFiredb = () => {
-  try {
-   const db = getDatabase(app);
-   const query = ref(db, "videos");
-   onValue(query, (snapshot) => {
-    const data = snapshot.val();
-    if (snapshot.exists()) {
-     setVideos(data);
-    } else {
-     setError("No video available!");
-    }
-   });
-  } catch (error) {
-   setError("Network error occurred.");
-  }
- };
- useEffect(() => {
-  fetchFiredb();
- }, []);
-
- if (error !== false) {
-  return <NetError msg={error} />;
- }
  return (
   <>
-   <Navbar />
-   <div className="__home __commonCss">
-    <div className="row">
-     <div className="col-md-2">
-      <Sidebar />
-     </div>
-     <div className="col-md-10">
-      <div className="__category-container">
-       <Category />
+   <Grid container spacing={3}>
+    <Grid
+     item
+     lg={2}
+     style={{
+      maxWidth: "250px",
+     }}
+    >
+     <Paper
+      className="__sidemenu"
+      sx={{
+       minHeight: "90vh",
+       display: {
+        xs: "none",
+        lg: "block",
+       },
+       background: "transparent",
+      }}
+     >
+      <Link to="/" className="active">
+       <Button>
+        <span>
+         <HomeIcon />
+        </span>
+        Home
+       </Button>
+      </Link>
+      <Divider
+       style={{
+        margin: "1rem 0",
+       }}
+      />
+      <Link to="/account?tab=subscriptions">
+       <Button>
+        <span>
+         <Subscriptions />
+        </span>
+        Subscriptions
+       </Button>
+      </Link>
+      <Link to="/account?tab=history">
+       <Button>
+        <span>
+         <AccessTimeFilled />
+        </span>
+        History
+       </Button>
+      </Link>
+      <Link to="/account?playlists">
+       <Button>
+        <span>
+         <FeaturedPlayList />
+        </span>
+        Playlists
+       </Button>
+      </Link>
+     </Paper>
+    </Grid>
+    <Grid item xs={12} lg={10}>
+     <div className="__category-container">
+      <div style={{ display: "flex", overflow: "hidden", overflowX: "scroll" }}>
+       <Button className="category active">All</Button>
+       <Button className="category">Music</Button>
+       <Button className="category">Gaming</Button>
+       <Button className="category">Movies</Button>
+       <Button className="category">News</Button>
+       <Button className="category">Live</Button>
+       <Button className="category">Fashion & Beauty</Button>
+       <Button className="category">Learning</Button>
+       <Button className="category">Sports</Button>
+       <Button className="category">360° Video</Button>
+       <Button className="category">Browse Channels</Button>
       </div>
-      <div className="__video-container">
-       <div className="row row-gap-4">
-        {videos.map((x, i) => {
-         if (x) {
-          return (
-           <Video
-            id={i}
-            name={x.title || ""}
-            thumb={
-             "https://firebasestorage.googleapis.com/v0/b/wetube-dev.appspot.com/o/photos%2Fvideo%2F" +
-              x.thumbnail +
-              "?alt=media" || blank
-            }
-            pub={x.publicationDate || "0"}
-            channelName={x.channelName || "Error Occured"}
-            channelThumb={
-             "https://firebasestorage.googleapis.com/v0/b/wetube-dev.appspot.com/o/photos%2Fprofile%2F" +
-              x.channelThumbnail +
-              "?alt=media" || blank
-            }
-            duration={x.duration || "00:00"}
-            views={x.views || "0"}
-           />
-          );
-         }
-        })}
-       </div>
-      </div>
      </div>
-    </div>
-   </div>
+     <div className="__videos-container">
+      <Grid
+       container
+       spacing={2}
+       sx={{
+        display: "flex",
+        justifyContent: {
+         xs: "center",
+         sm: "flex-start",
+        },
+       }}
+      >
+       <Grid item xs={11} sm={6} md={4} xl={3} maxWidth="500px">
+        <Video />
+       </Grid>
+       <Grid item xs={11} sm={6} md={4} xl={3} maxWidth="500px">
+        <Video />
+       </Grid>
+       <Grid item xs={11} sm={6} md={4} xl={3} maxWidth="500px">
+        <Video />
+       </Grid>
+       <Grid item xs={11} sm={6} md={4} xl={3} maxWidth="500px">
+        <Video />
+       </Grid>
+       <Grid item xs={11} sm={6} md={4} xl={3} maxWidth="500px">
+        <Video />
+       </Grid>
+       <Grid item xs={11} sm={6} md={4} xl={3} maxWidth="500px">
+        <Video />
+       </Grid>
+       <Grid item xs={11} sm={6} md={4} xl={3} maxWidth="500px">
+        <Video />
+       </Grid>
+      </Grid>
+     </div>
+    </Grid>
+   </Grid>
   </>
  );
 }
