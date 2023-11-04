@@ -309,9 +309,10 @@ img::after {
   border: 0;
   font-size: 0.9rem;
   margin: 0.1rem 0;
+  font-weight: 400;
   svg {
-   width: 15px;
-   height: 15px;
+   width: 17px;
+   height: 17px;
    fill: $primary-text-color;
    margin-bottom: -0.2rem;
    margin-right: 0.7rem;
@@ -329,7 +330,7 @@ img::after {
  a.active {
   button {
    background-color: rgba($primary-other-color, 0.2);
-   font-weight: 800;
+   font-weight: 500;
    color: $primary-other-color;
   }
   svg {

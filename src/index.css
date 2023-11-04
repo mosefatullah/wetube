@@ -297,10 +297,11 @@ img::after {
   border: 0;
   font-size: 0.9rem;
   margin: 0.1rem 0;
+  font-weight: 400;
 }
 .__sidemenu button svg {
-  width: 15px;
-  height: 15px;
+  width: 17px;
+  height: 17px;
   fill: #fff;
   margin-bottom: -0.2rem;
   margin-right: 0.7rem;
@@ -316,7 +317,7 @@ img::after {
 }
 .__sidemenu a.active button {
   background-color: rgba(52, 152, 219, 0.2);
-  font-weight: 800;
+  font-weight: 500;
   color: #3498db;
 }
 .__sidemenu a.active svg {

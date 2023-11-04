@@ -16,9 +16,9 @@ export default function getVideo(instruct, onLoad, onError) {
    onValue(query, (snapshot) => {
     const data = snapshot.val();
     if (snapshot.exists()) {
-     onLoad(data);
+        if(onLoad)onLoad(data);
     } else {
-     onError("No video available!");
+        if(onError) onError("No video available!");
     }
    });
   } else if (instruct[0] == "by_id" && instruct[1] != null) {
@@ -37,12 +37,12 @@ export default function getVideo(instruct, onLoad, onError) {
         d = data[i];
        }
       }
-      onLoad(d);
+      if(onLoad)onLoad(d);
      }
     }
    );
   }
  } catch (error) {
-  onError("Network error occurred.");
+    if(onError)onError("Network error occurred.");
  }
 }

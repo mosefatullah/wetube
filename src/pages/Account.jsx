@@ -17,7 +17,7 @@ function Account() {
    case "history":
     setTab(2);
     break;
-   case "playlists":
+   case "collections":
     setTab(3);
     break;
   }
