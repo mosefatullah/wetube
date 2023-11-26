@@ -2,20 +2,22 @@ import React from "react";
 import { Link } from "react-router-dom";
 import blank from "../assets/images/blank.jpg";
 import { Paper } from "@mui/material";
+import { Theme } from "../services/theme";
 
 function Video(props) {
+ let ago = "";
+ const inputDateString = props.publicationDate;
  const Placeholder = () => (
   <Paper
+   elevation={0}
    sx={{
     height: "1rem",
     width: "100%",
     minWidth: "4rem",
-    backgroundColor: "rgba(0,0,0,0.1)",
+    backgroundColor: Theme.palette.background.default,
    }}
   ></Paper>
  );
- const inputDateString = props.publicationDate;
- let ago = "";
  if (inputDateString) {
   const actualDateAgo = new Date(inputDateString);
   const today = new Date();
@@ -36,16 +38,30 @@ function Video(props) {
  }
  return (
   <div className="__video">
-   <Link to={props.id && "/watch?i=" + props.id}>
+   <a href={props.id && window.location.href+"/watch?i=" + props.id}>
     <div className="video">
      <div className="thumbnail">
-      <img src={"https://firebasestorage.googleapis.com/v0/b/wetube-dev.appspot.com/o/photos%2Fvideo%2F"+props.thumbnail+"?alt=media" || blank} />
+      <img
+       src={
+        props.thumbnail ? "https://firebasestorage.googleapis.com/v0/b/wetube-dev.appspot.com/o/photos%2Fvideo%2F" +
+         props.thumbnail +
+         "?alt=media" : blank
+       }
+      />
       <span>{props.duration}</span>
      </div>
      <div className="info">
       <p>{props.title || <Placeholder />}</p>
       <div style={{ display: "flex" }}>
-       <img src={"https://firebasestorage.googleapis.com/v0/b/wetube-dev.appspot.com/o/photos%2Fprofile%2F"+props.channelThumbnail+"?alt=media" || blank} />
+       <img
+        src={
+         props.channelThumbnail
+          ? "https://firebasestorage.googleapis.com/v0/b/wetube-dev.appspot.com/o/photos%2Fprofile%2F" +
+            props.channelThumbnail +
+            "?alt=media"
+          : blank
+        }
+       />
        <div className="details">
         <span>{ago || ""}</span>
         <br />
@@ -61,7 +77,7 @@ function Video(props) {
       </div>
      </div>
     </div>
-   </Link>
+   </a>
   </div>
  );
 }

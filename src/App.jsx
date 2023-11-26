@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
 
 import { ThemeProvider } from "@mui/material/styles";
 import { Theme } from "./services/theme";
@@ -13,22 +13,20 @@ import NotFound from "./pages/NotFound";
 
 function App() {
  return (
-  <ThemeProvider theme={Theme}>
-   <CssBaseline />
-   <div className="App">
-    <main>
-     <BrowserRouter basename="/wetube">
-      <Header />
-      <Routes>
-       <Route path="/" element={<Home />} />
-       <Route path="/account" element={<Account />} />
-       <Route path="/watch" element={<Watch />} />
-       <Route path="/*" element={<NotFound />} />
-      </Routes>
-     </BrowserRouter>
-    </main>
-   </div>
-  </ThemeProvider>
+  <div className="App">
+   <BrowserRouter basename="/wetube">
+    <ThemeProvider theme={Theme}>
+     <CssBaseline />
+     <Header />
+     <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/account" element={<Account />} />
+      <Route path="/watch" element={<Watch />} />
+      <Route path="/*" element={<NotFound />} />
+     </Routes>
+    </ThemeProvider>
+   </BrowserRouter>
+  </div>
  );
 }
 

@@ -416,15 +416,8 @@ img::after {
     }
    }
   }
-  &:hover {
-   opacity: 0.8;
-  }
   &:active {
-   background-color: rgba($primary-text-color, 0.05);
-   border-top-left-radius: 0.8rem;
-   border-top-right-radius: 0.8rem;
-   outline: 1px solid rgba($primary-text-color, 0.1);
-   opacity: 1;
+   opacity: 0.8;
   }
  }
 }

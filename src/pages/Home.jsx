@@ -20,45 +20,42 @@ function Home() {
   );
  }, []);
  return (
-  <>
-   <Grid container spacing={3}>
-    <Grid
-     item
-     lg={2}
-     style={{
-      maxWidth: "250px",
-     }}
-    >
-     <Sidebar active="0" />
-    </Grid>
-    <Grid item xs={12} lg={10}>
-     <div className="__category-container">
-      <Category />
-     </div>
-     <div className="__videos-container">
-      <Grid
-       container
-       spacing={2}
-       sx={{
-        display: "flex",
-        justifyContent: {
-         xs: "center",
-         sm: "flex-start",
-        },
-       }}
-      >
-       {videos.map((v) => {
-        return (
-         <Grid item xs={11} sm={6} md={4} xl={3} maxWidth="500px">
-          <Video {...v} />
-         </Grid>
-        );
-       })}
-      </Grid>
-     </div>
-    </Grid>
+  <Grid container spacing={3}>
+   <Grid
+    item
+    lg={2}
+    style={{
+     maxWidth: "250px",
+    }}
+   >
+    <Sidebar active="0" />
    </Grid>
-  </>
+   <Grid item xs={12} lg={10}>
+    <div className="__category-container">
+     <Category />
+    </div>
+    <div className="__videos-container">
+     <Grid
+      container
+      spacing={2}
+      sx={{
+       justifyContent: {
+        xs: "center",
+        sm: "flex-start",
+       },
+      }}
+     >
+      {videos.map((v) => {
+       return (
+        <Grid item xs={11} sm={6} md={4} xl={3} maxWidth="500px">
+         <Video {...v} />
+        </Grid>
+       );
+      })}
+     </Grid>
+    </div>
+   </Grid>
+  </Grid>
  );
 }
 
